@@ -12,6 +12,7 @@ import { Card3DTilt } from './Card3DTilt';
 
 export const NutritionistProfile: React.FC<{ onOpenBooking: () => void }> = ({ onOpenBooking }) => {
   const [activePillar, setActivePillar] = useState<number>(0);
+  const [imgSrc, setImgSrc] = useState('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=80');
 
   const pillars = [
     {
@@ -42,27 +43,35 @@ export const NutritionistProfile: React.FC<{ onOpenBooking: () => void }> = ({ o
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Portrait & 3D Interactive Card (5 cols) */}
-          <div className="lg:col-span-5 flex justify-center">
-            <Card3DTilt maxTilt={8} className="w-full max-w-md">
-              <div className="relative rounded-3xl overflow-hidden shadow-float border border-slate-200/80 bg-slate-50 group hover-lift">
+          <div className="lg:col-span-5 flex justify-center w-full">
+            <Card3DTilt maxTilt={6} className="w-full max-w-md">
+              <div className="relative rounded-3xl overflow-hidden shadow-float border border-slate-200/90 bg-slate-900 group hover-lift">
                 
-                {/* Practice Photo */}
-                <div className="relative h-96 sm:h-[460px] w-full">
+                {/* Practice Photo with fallback */}
+                <div className="relative h-96 sm:h-[460px] w-full bg-gradient-to-br from-emerald-900 via-slate-900 to-slate-950 flex items-center justify-center overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1594824813596-f08966c4c0f2?w=800&auto=format&fit=crop&q=80"
+                    src={imgSrc}
                     alt="Ernährungsberatung ErnährungsTreff Lilienthal"
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
+                    onError={() => {
+                      setImgSrc('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80');
+                    }}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
                   
                   {/* Bottom details */}
                   <div className="absolute bottom-5 left-5 right-5 text-white">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-600/95 backdrop-blur-sm text-xs font-bold mb-2">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-600/95 backdrop-blur-sm text-xs font-bold mb-2 shadow-sm">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Qualifizierte Ernährungsberatung</span>
                     </div>
-                    <h3 className="text-2xl font-black font-display">ErnährungsTreff Lilienthal</h3>
-                    <p className="text-xs text-slate-200 font-medium">Praxis für Ernährungsberatung & Ernährungstherapie</p>
+                    <h3 className="text-2xl font-black font-display tracking-tight text-white drop-shadow-sm">
+                      ErnährungsTreff Lilienthal
+                    </h3>
+                    <p className="text-xs text-slate-200 font-medium">
+                      Praxis für Ernährungsberatung & Ernährungstherapie
+                    </p>
                   </div>
                 </div>
 

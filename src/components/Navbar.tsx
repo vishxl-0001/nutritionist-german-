@@ -44,29 +44,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onNavigate }) => 
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
             ? 'py-2.5 bg-white/95 backdrop-blur-md shadow-sm border-b border-emerald-100/80'
-            : 'py-4 bg-transparent'
+            : 'py-3.5 sm:py-4 bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* Logo ErnährungsTreff Lilienthal */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between gap-2">
+            
+            {/* Logo ErnährungsTreff Lilienthal (never cut off, flex-shrink-0) */}
             <div 
               onClick={() => handleLinkClick('hero')} 
-              className="flex items-center gap-2.5 cursor-pointer group select-none"
+              className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group select-none flex-shrink-0 min-w-0"
             >
-              <div className="relative w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-emerald-500 flex items-center justify-center shadow-md shadow-brand-600/25 group-hover:scale-105 group-hover:rotate-1 transition-all duration-300">
-                <span className="text-white font-black text-sm tracking-tight font-display">ETL</span>
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-amber-400 rounded-full border-2 border-white animate-pulse" />
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-emerald-500 flex items-center justify-center shadow-md shadow-brand-600/25 group-hover:scale-105 transition-all duration-300 flex-shrink-0">
+                <span className="text-white font-black text-xs sm:text-sm tracking-tight font-display">ETL</span>
+                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-amber-400 rounded-full border-2 border-white animate-pulse" />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-baseline gap-0.5">
-                  <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 font-display">
+              <div className="flex flex-col min-w-0">
+                <div className="flex items-baseline gap-0.5 truncate">
+                  <span className="text-base sm:text-lg lg:text-xl font-black tracking-tight text-slate-900 font-display">
                     ErnährungsTreff<span className="text-brand-600"> Lilienthal</span>
                   </span>
                 </div>
-                <span className="text-[10px] tracking-wider uppercase font-bold text-slate-500 -mt-0.5 flex items-center gap-1.5">
+                <span className="text-[9px] sm:text-[10px] tracking-wider uppercase font-bold text-slate-500 -mt-0.5 flex items-center gap-1.5 truncate">
                   <span>Ernährungsberatung</span>
-                  <span className="w-1 h-1 rounded-full bg-brand-500" />
+                  <span className="w-1 h-1 rounded-full bg-brand-500 hidden xs:inline" />
                   <span className="text-amber-600 flex items-center gap-0.5 font-extrabold">
                     <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500" /> 5.0 Google
                   </span>
@@ -74,49 +75,54 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onNavigate }) => 
               </div>
             </div>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-1 bg-white/85 backdrop-blur-md border border-slate-200/90 px-3 py-1.5 rounded-full shadow-xs">
+            {/* Desktop Navigation Links (xl & up) */}
+            <nav className="hidden xl:flex items-center gap-1 bg-white/85 backdrop-blur-md border border-slate-200/90 px-3 py-1.5 rounded-full shadow-xs">
               <button
                 onClick={() => handleLinkClick('calculator')}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
+                className="px-3 py-1 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
               >
                 Kalorienrechner
               </button>
               <button
                 onClick={() => handleLinkClick('meal-planner')}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
+                className="px-3 py-1 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
               >
                 Ernährungspläne
               </button>
               <button
                 onClick={() => handleLinkClick('quiz')}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
+                className="px-3 py-1 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
               >
                 Stoffwechsel-Test
               </button>
               <button
                 onClick={() => handleLinkClick('transformations')}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
+                className="px-3 py-1 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
               >
                 Erfolgsberichte
               </button>
               <button
                 onClick={() => handleLinkClick('programs')}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
+                className="px-3 py-1 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
               >
-                Beratungsangebote
+                Preise
+              </button>
+              <button
+                onClick={() => handleLinkClick('location-map')}
+                className="px-3 py-1 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
+              >
+                Standort & Anfahrt
               </button>
               <button
                 onClick={() => handleLinkClick('about')}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
+                className="px-3 py-1 text-xs font-semibold text-slate-700 hover:text-brand-700 rounded-full hover:bg-brand-50/80 transition-colors"
               >
-                Über die Praxis
+                Über Uns
               </button>
             </nav>
 
-            {/* Right CTAs */}
-            <div className="hidden sm:flex items-center gap-2.5">
-              {/* WhatsApp Quick Direct Link */}
+            {/* Desktop Actions (Shown on large screens) */}
+            <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
               <a
                 href="https://wa.me/4917630632723?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Ern%C3%A4hrungsberatung%20im%20Ern%C3%A4hrungsTreff%20Lilienthal."
                 target="_blank"
@@ -128,35 +134,45 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onNavigate }) => 
                 <span>+49 176 30632723</span>
               </a>
 
-              {/* Termin Buchen Modal Button */}
               <button
                 onClick={onOpenBooking}
-                className="relative group overflow-hidden px-5 py-2.5 rounded-full bg-slate-900 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-102 flex items-center gap-2"
+                className="relative group overflow-hidden px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-slate-900 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-300 hover:scale-102 flex items-center gap-2"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-brand-600 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-emerald-300" />
+                <span className="relative flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-emerald-300" />
                   <span>Termin vereinbaren</span>
                 </span>
               </button>
             </div>
 
-            {/* Mobile Hamburger & Quick Action Button */}
-            <div className="flex items-center gap-2 lg:hidden">
+            {/* Mobile / Tablet Quick Actions (Shown on smaller screens < lg) */}
+            <div className="flex items-center gap-1.5 lg:hidden flex-shrink-0">
+              <a
+                href="tel:+4917630632723"
+                className="p-2 rounded-xl text-brand-700 bg-emerald-50 border border-emerald-200 shadow-xs active:scale-95 transition-transform"
+                title="Anrufen: +49 176 30632723"
+                aria-label="Anrufen"
+              >
+                <Phone className="w-4 h-4" />
+              </a>
+
               <button
                 onClick={onOpenBooking}
                 className="px-3 py-1.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-xs active:scale-95 transition-transform"
               >
                 Termin
               </button>
+              
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 rounded-xl text-slate-700 bg-white/90 border border-slate-200 shadow-xs active:scale-95 transition-transform focus:outline-none"
                 aria-label="Menü öffnen"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
               </button>
             </div>
+
           </div>
         </div>
       </header>
@@ -207,6 +223,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onNavigate }) => 
                   { id: 'quiz', label: '60-Sekunden Stoffwechsel-Test', icon: Sparkles },
                   { id: 'transformations', label: 'Echte Vorher-Nachher-Erfolge', icon: Award },
                   { id: 'programs', label: 'Beratungspakete & Preise', icon: Calendar },
+                  { id: 'location-map', label: 'Standort & Google Maps Anfahrt', icon: MapPin },
                   { id: 'about', label: 'Über Uns & Praxiskonzept', icon: HeartPulse },
                 ].map((item) => {
                   const Icon = item.icon;

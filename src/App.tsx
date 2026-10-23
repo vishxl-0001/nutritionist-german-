@@ -7,6 +7,7 @@ import { AssessmentQuiz } from './components/AssessmentQuiz';
 import { TransformationSlider } from './components/TransformationSlider';
 import { ServicesPricing } from './components/ServicesPricing';
 import { NutritionistProfile } from './components/NutritionistProfile';
+import { LocationMapSection } from './components/LocationMapSection';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { MobileBottomBar } from './components/MobileBottomBar';
@@ -32,7 +33,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Content Sections */}
-      <main>
+      <main className="pb-16 lg:pb-0">
         {/* 1. Hero with 3D Three.js Organic Fruit & Floating Tilt Badges */}
         <HeroSection
           onOpenBooking={() => setBookingOpen(true)}
@@ -69,6 +70,11 @@ export const App: React.FC = () => {
 
         {/* 8. Frequently Asked Questions */}
         <FaqSection />
+
+        {/* 9. Interactive Google Map & Practice Location in Lilienthal */}
+        <LocationMapSection
+          onOpenBooking={() => setBookingOpen(true)}
+        />
       </main>
 
       {/* Footer */}

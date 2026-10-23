@@ -48,13 +48,13 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => 
             alt={recipe.name}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent" />
           
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2.5 rounded-full bg-white/90 hover:bg-white text-slate-800 backdrop-blur-md shadow-md transition-all"
-            aria-label="Cerrar receta"
+            className="absolute top-4 right-4 p-2.5 rounded-full bg-white/90 hover:bg-white text-slate-800 backdrop-blur-md shadow-md transition-all active:scale-95"
+            aria-label="Rezept schließen"
           >
             <X className="w-5 h-5" />
           </button>
@@ -76,7 +76,7 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => 
             <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center gap-3">
               <Flame className="w-5 h-5 text-emerald-600" />
               <div>
-                <span className="text-[10px] text-slate-500 uppercase font-bold block">Calorías</span>
+                <span className="text-[10px] text-slate-500 uppercase font-bold block">Kalorien</span>
                 <span className="text-base font-black text-slate-900 font-display">{recipe.calories} kcal</span>
               </div>
             </div>
@@ -84,7 +84,7 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => 
             <div className="p-3 rounded-2xl bg-amber-50 border border-amber-100 flex items-center gap-3">
               <Clock className="w-5 h-5 text-amber-600" />
               <div>
-                <span className="text-[10px] text-slate-500 uppercase font-bold block">Tiempo</span>
+                <span className="text-[10px] text-slate-500 uppercase font-bold block">Zubereitung</span>
                 <span className="text-base font-black text-slate-900 font-display">{recipe.time}</span>
               </div>
             </div>
@@ -92,25 +92,25 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => 
             <div className="p-3 rounded-2xl bg-teal-50 border border-teal-100 flex items-center gap-3">
               <Users className="w-5 h-5 text-teal-600" />
               <div>
-                <span className="text-[10px] text-slate-500 uppercase font-bold block">Raciones</span>
-                <span className="text-base font-black text-slate-900 font-display">{recipe.servings} Persona</span>
+                <span className="text-[10px] text-slate-500 uppercase font-bold block">Portionen</span>
+                <span className="text-base font-black text-slate-900 font-display">{recipe.servings} Person</span>
               </div>
             </div>
 
             <div className="p-3 rounded-2xl bg-purple-50 border border-purple-100 flex items-center gap-3">
               <Sparkles className="w-5 h-5 text-purple-600" />
               <div>
-                <span className="text-[10px] text-slate-500 uppercase font-bold block">Proteína</span>
+                <span className="text-[10px] text-slate-500 uppercase font-bold block">Eiweiß</span>
                 <span className="text-base font-black text-slate-900 font-display">{recipe.protein}g</span>
               </div>
             </div>
           </div>
 
-          {/* Beneficios nutricionales clínicos */}
+          {/* Ernährungsphysiologische Vorteile */}
           <div>
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-brand-600" />
-              Beneficios Clínicos y Metabólicos
+              Gesundheitlicher Mehrwert & Stoffwechselnutzen
             </h4>
             <div className="flex flex-wrap gap-2">
               {recipe.benefits.map((b, idx) => (
@@ -121,14 +121,14 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => 
             </div>
           </div>
 
-          {/* Ingredientes interactivos */}
+          {/* Interaktive Zutatenliste mit Abhaken */}
           <div>
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
                 <ChefHat className="w-4 h-4 text-amber-500" />
-                Ingredientes ({recipe.ingredients.length})
+                Zutaten ({recipe.ingredients.length})
               </h4>
-              <span className="text-xs text-slate-500 font-medium">Toca para tachar</span>
+              <span className="text-xs text-slate-500 font-medium">Antippen zum Abhaken</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {recipe.ingredients.map((ing, idx) => {
@@ -155,10 +155,10 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => 
             </div>
           </div>
 
-          {/* Elaboración paso a paso */}
+          {/* Schritt-für-Schritt-Zubereitung */}
           <div>
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">
-              Elaboración y Preparación
+              Schritt-für-Schritt-Zubereitung
             </h4>
             <ol className="space-y-3">
               {recipe.instructions.map((step, idx) => (
@@ -172,17 +172,17 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => 
             </ol>
           </div>
 
-          {/* Micronutrientes destacados */}
+          {/* Wichtige Mikronährstoffe */}
           <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
             <h5 className="text-xs font-bold text-slate-800 uppercase tracking-wider mb-3">
-              Micronutrientes Clave (% Cantidad Diaria Recomendada)
+              Ausgewählte Mikronährstoffe (% empfohlene Tageszufuhr)
             </h5>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
               {recipe.micronutrients.map((micro, idx) => (
                 <div key={idx} className="bg-white p-2.5 rounded-xl border border-slate-100">
                   <p className="text-[11px] text-slate-500 font-medium">{micro.label}</p>
                   <p className="text-sm font-black text-slate-900 font-display">{micro.amount}</p>
-                  <p className="text-[10px] text-brand-700 font-bold">{micro.dv} CDR</p>
+                  <p className="text-[10px] text-brand-700 font-bold">{micro.dv} Tagesbedarf</p>
                 </div>
               ))}
             </div>
@@ -194,13 +194,13 @@ export const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => 
         <div className="p-4 sm:p-5 border-t border-slate-100 bg-slate-50/80 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-medium text-slate-600">
             <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
-            <span>Receta basada en Comida Real • Método Punto Final</span>
+            <span>ErnährungsTreff Lilienthal • Natürliche Vollwerternährung</span>
           </div>
           <button
             onClick={onClose}
-            className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold"
+            className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold active:scale-98 transition-transform"
           >
-            Cerrar Receta
+            Rezept schließen
           </button>
         </div>
 

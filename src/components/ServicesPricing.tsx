@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Sparkles, Zap, Shield, ArrowRight, Star, MessageCircle } from 'lucide-react';
+import { Check, Zap, ArrowRight, Star, MessageCircle, ShieldCheck } from 'lucide-react';
 import { Card3DTilt } from './Card3DTilt';
 
 interface ServicesPricingProps {
@@ -11,62 +11,61 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({ onOpenBooking 
 
   const plans = [
     {
-      id: 'inicial',
-      name: 'Consulta Inicial de Valoración',
+      id: 'erstberatung',
+      name: 'Erstberatung & Anamnese',
       popular: false,
-      tag: 'Para Empezar',
-      priceFull: '65 €',
-      priceMonthly: '65 €',
-      duration: 'Sesión Clínica 70 min',
-      description: 'Ideal para hacer un diagnóstico clínico inicial, analizar analíticas médicas y recibir tus primeras pautas personalizadas.',
+      tag: 'Der optimale Start',
+      priceFull: '69 €',
+      priceMonthly: '69 €',
+      duration: '70 Minuten Intensiv-Termin',
+      description: 'Ideal für eine gründliche Bestandsaufnahme, Besprechung von Blutwerten und erste konkrete Schritte für Ihren Alltag.',
       features: [
-        'Consulta de 70 minutos (Presencial en Bermejales u Online)',
-        'Estudio de composición corporal por bioimpedancia (en clínica)',
-        'Revisión clínica de tus analíticas sanguíneas recientes',
-        'Primer plan de alimentación realista para tu día a día',
-        'Guía de compra inteligente y lectura de etiquetas',
-        'Factura sanitaria oficial para seguros de reembolso',
+        '70-minütige Einzelsitzung (Vor Ort in Lilienthal oder per Video)',
+        'Detaillierte Ernährungs- & Lebensstilanalyse',
+        'Durchsicht vorhandener Labor- & Blutwerte',
+        'Erster konkreter, alltagstauglicher Ernährungsleitfaden',
+        'Einkaufsratgeber & Orientierungshilfe für Lebensmittel',
+        'Präventionsbescheinigung für die Krankenkasse möglich',
       ],
-      cta: 'Pedir Consulta Inicial'
+      cta: 'Erstberatung anfragen'
     },
     {
-      id: 'reeducacion12',
-      name: 'Plan Reeducación 12 Semanas',
+      id: 'programm12',
+      name: '12-Wochen-Ernährungsprogramm',
       popular: true,
-      tag: 'Plan Estrella',
-      priceFull: '290 €',
-      priceMonthly: '105 €/mes',
-      duration: '3 Meses (6 Sesiones)',
-      description: 'Nuestro programa más recomendado para transformar tu alimentación, perder grasa sin efecto rebote y fijar hábitos para siempre.',
+      tag: 'Praxis-Favorit',
+      priceFull: '295 €',
+      priceMonthly: '105 €/Monat',
+      duration: '3 Monate persönliche Begleitung (6 Termine)',
+      description: 'Unser bewährtes Programm für nachhaltige Gewichtsreduktion, Abbau von Heißhunger und dauerhafte Festigung neuer Gewohnheiten.',
       features: [
-        'Incluye Consulta Inicial completa de 70 min',
-        '5 Consultas de seguimiento y evolución quincenal',
-        'Acompañamiento y resolución de dudas por WhatsApp directo',
-        'Adaptación continua a tu vida social, horarios y vacaciones',
-        'Menús semanales variados con recetas mediterráneas',
-        'Estrategias de psiconutrición contra el hambre emocional',
-        'Pauta final de mantenimiento para no recuperar el peso',
+        'Inklusive ausführlicher 70-Minuten Erstberatung',
+        '5 Folgetermine zur kontinuierlichen Feinabstimmung',
+        'WhatsApp-Begleitung bei Fragen im Alltag oder beim Einkauf',
+        'Flexible Mahlzeitenpläne & leckere Vollwert-Rezepte',
+        'Strategien gegen emotionalen Hunger & Stressessen',
+        'Konzept gegen Jo-Jo-Effekt für lebenslanges Wohlfühlgewicht',
       ],
-      cta: 'Empezar Plan 12 Semanas'
+      cta: '12-Wochen-Programm starten'
     },
     {
-      id: 'digestivo_hormonal',
-      name: 'Digestivo & Salud Hormonal',
+      id: 'darm_therapie',
+      name: 'Darmgesundheit & Stoffwechsel',
       popular: false,
-      tag: 'Casos Complejos',
-      priceFull: '480 €',
-      priceMonthly: '165 €/mes',
-      duration: '4 Meses de Tratamiento',
-      description: 'Enfoque clínico intensivo para patologías digestivas (SIBO, colon irritable, disbiosis) o desajustes hormonales (SOP, amenorrea, tiroides).',
+      tag: 'Bei Beschwerden',
+      priceFull: '485 €',
+      priceMonthly: '165 €/Monat',
+      duration: '4 Monate gezielte Therapiebegleitung',
+      description: 'Intensives Konzept bei Reizdarm, chronischem Blähbauch, Nahrungsmittelunverträglichkeiten oder hormonellen Disbalancen.',
       features: [
-        'Todo lo del Plan de Reeducación 12 Semanas',
-        'Protocolo clínico por fases (retirada, reparación y reintroducción)',
-        'Interpretación de test de SIBO, celiaquía o perfiles hormonales',
-        'Pauta de suplementación y fitoterapia basada en evidencia',
-        'Contacto prioritario por WhatsApp para resolver molestias',
-        'Coordinación con los informes de tus médicos especialistas',
+        'Umfasst alle Leistungen des 12-Wochen-Programms',
+        '3-Phasen-Konzept: Entlastung, Darmsanierung & schonende Reintegration',
+        'Unterstützung bei Fruktose-, Laktose- oder Histaminintoleranz',
+        'Evidenzbasierte Empfehlungen zu Prä- & Probiotika',
+        'Prioritärer WhatsApp-Kontakt bei akuten Beschwerden',
+        'Abstimmung mit Ihrem behandelnden Haus- oder Facharzt',
       ],
-      cta: 'Consultar Caso Clínico'
+      cta: 'Darm-Therapie anfragen'
     }
   ];
 
@@ -77,36 +76,36 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({ onOpenBooking 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-brand-800 text-xs font-bold mb-3 border border-brand-200">
-            <Zap className="w-3.5 h-3.5" />
-            <span>Tarifas Claras y Transparentes</span>
+            <Zap className="w-3.5 h-3.5 text-brand-600" />
+            <span>Transparente Beratungsangebote</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight font-display mb-4">
-            Planes de Nutrición y Acompañamiento <br />
+            Ernährungsberatung & Begleitung <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 via-emerald-600 to-teal-600">
-              Adaptados a tus Necesidades
+              Genau auf Ihre Ziele abgestimmt
             </span>
           </h2>
           <p className="text-slate-600 text-base">
-            Sin permanencias ni productos milagro obligatorios. Emitimos factura sanitaria oficial válida para desgravación o seguros médicos con póliza de reembolso.
+            Keine Knebelverträge, keine verpflichtenden Zusatzprodukte. Gesetzliche Krankenkassen bezuschussen zertifizierte Ernährungsberatung häufig mit <strong>bis zu 80–100 %</strong> nach § 20 / § 43 SGB V.
           </p>
 
           {/* Billing Switcher */}
-          <div className="inline-flex items-center gap-2 bg-slate-200/70 p-1 rounded-full mt-8">
+          <div className="inline-flex items-center gap-2 bg-slate-200/80 p-1 rounded-full mt-8">
             <button
               onClick={() => setBillingCycle('full')}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                 billingCycle === 'full' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Pago Único (Con Descuento)
+              Einmalzahlung (mit Preisvorteil)
             </button>
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                 billingCycle === 'monthly' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Pago Fraccionado Mes a Mes
+              Bequeme Ratenzahlung (monatlich)
             </button>
           </div>
         </div>
@@ -116,15 +115,15 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({ onOpenBooking 
           {plans.map((plan) => (
             <Card3DTilt key={plan.id} maxTilt={6} className="h-full">
               <div
-                className={`relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between h-full transition-all duration-300 ${
+                className={`relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between h-full transition-all duration-300 hover-lift ${
                   plan.popular
                     ? 'bg-white border-2 border-brand-600 shadow-3d lg:-translate-y-2'
-                    : 'bg-white/90 border border-slate-200/90 shadow-soft'
+                    : 'bg-white/95 border border-slate-200/90 shadow-soft'
                 }`}
               >
                 {/* Popular Badge */}
                 {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-700 to-emerald-600 text-white text-xs font-black uppercase tracking-wider shadow-md flex items-center gap-1.5">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-700 to-emerald-600 text-white text-xs font-black uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap">
                     <Star className="w-3.5 h-3.5 fill-white" />
                     <span>{plan.tag}</span>
                   </div>
@@ -150,7 +149,7 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({ onOpenBooking 
                       {billingCycle === 'full' ? plan.priceFull : plan.priceMonthly}
                     </span>
                     <span className="text-xs text-slate-500 font-semibold">
-                      {billingCycle === 'monthly' && plan.id !== 'inicial' ? ' / mes' : ' IVA incl.'}
+                      {billingCycle === 'monthly' && plan.id !== 'erstberatung' ? ' / Monat' : ' inkl. MwSt.'}
                     </span>
                   </div>
 
@@ -172,7 +171,7 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({ onOpenBooking 
                 <div className="space-y-2">
                   <button
                     onClick={onOpenBooking}
-                    className={`w-full py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm ${
+                    className={`w-full py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-sm active:scale-98 ${
                       plan.popular
                         ? 'bg-gradient-to-r from-brand-700 to-emerald-600 text-white hover:shadow-md'
                         : 'bg-slate-900 hover:bg-slate-800 text-white'
@@ -183,19 +182,40 @@ export const ServicesPricing: React.FC<ServicesPricingProps> = ({ onOpenBooking 
                   </button>
 
                   <a
-                    href={`https://wa.me/34682602256?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20el%20plan:%20${encodeURIComponent(plan.name)}`}
+                    href={`https://wa.me/4917630632723?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20folgendes%20Angebot:%20${encodeURIComponent(plan.name)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-emerald-700 bg-slate-50 hover:bg-emerald-50 border border-slate-200 transition-colors flex items-center justify-center gap-1.5"
+                    className="w-full py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-emerald-700 bg-slate-50 hover:bg-emerald-50 border border-slate-200 transition-colors flex items-center justify-center gap-1.5 active:scale-98"
                   >
                     <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Preguntar dudas por WhatsApp</span>
+                    <span>Fragen unkompliziert per WhatsApp</span>
                   </a>
                 </div>
 
               </div>
             </Card3DTilt>
           ))}
+        </div>
+
+        {/* Krankenkassen Hinweis Banner */}
+        <div className="mt-12 p-6 rounded-3xl bg-emerald-50 border border-emerald-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center flex-shrink-0">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-slate-900">Krankenkassen-Zuschuss möglich (§ 20 / § 43 SGB V)</h4>
+              <p className="text-xs text-slate-600">
+                Viele gesetzliche & private Kassen (Techniker, Barmer, AOK, DAK etc.) erstatten einen Großteil der Kosten. Sprechen Sie uns gerne an!
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onOpenBooking}
+            className="px-5 py-2.5 rounded-xl bg-white border border-emerald-300 text-emerald-900 text-xs font-bold hover:bg-emerald-100 transition-colors whitespace-nowrap active:scale-98"
+          >
+            Jetzt unverbindlich anfragen
+          </button>
         </div>
 
       </div>

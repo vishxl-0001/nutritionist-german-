@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { 
   X, 
-  Calendar, 
-  Clock, 
   Video, 
   MapPin, 
   Users, 
   CheckCircle2, 
   ArrowRight, 
-  ShieldCheck,
   CalendarCheck,
-  MessageCircle,
-  Phone
+  MessageCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -23,33 +19,33 @@ interface BookingModalProps {
 export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
   const [step, setStep] = useState<number>(1);
   const [format, setFormat] = useState<string>('in_person');
-  const [selectedDate, setSelectedDate] = useState<string>('Mañana');
-  const [selectedTime, setSelectedTime] = useState<string>('11:00');
+  const [selectedDate, setSelectedDate] = useState<string>('Morgen');
+  const [selectedTime, setSelectedTime] = useState<string>('16:00');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    goal: 'Pérdida de Peso y Reeducación',
+    goal: 'Nachhaltiger Fettabbau & Ende des Jo-Jo-Effekts',
     notes: ''
   });
 
   if (!isOpen) return null;
 
   const dates = [
-    { label: 'Mañana', day: 'Próxima cita', slots: '2 Huecos libres' },
-    { label: 'Pasado mañana', day: 'En 48h', slots: '3 Huecos libres' },
-    { label: 'Jueves', day: 'Esta semana', slots: '4 Huecos libres' },
-    { label: 'Viernes', day: 'Esta semana', slots: '1 Hueco libre' },
-    { label: 'Próxima semana', day: 'Lunes', slots: '5 Huecos libres' },
+    { label: 'Morgen', day: 'Nächster Termin', slots: '2 freie Plätze' },
+    { label: 'Übermorgen', day: 'In 48 Std.', slots: '3 freie Plätze' },
+    { label: 'Donnerstag', day: 'Diese Woche', slots: '4 freie Plätze' },
+    { label: 'Freitag', day: 'Diese Woche', slots: '1 freier Platz' },
+    { label: 'Nächste Woche', day: 'Montag', slots: '5 freie Plätze' },
   ];
 
   const timeSlots = [
     '09:30',
     '11:00',
-    '12:30',
-    '16:30',
-    '18:00',
-    '19:30'
+    '14:00',
+    '16:00',
+    '17:30',
+    '19:00'
   ];
 
   const handleComplete = (e: React.FormEvent) => {
@@ -72,19 +68,19 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
   };
 
   const formatLabels: Record<string, string> = {
-    in_person: 'Presencial en Sevilla (Bermejales Center)',
-    virtual: 'Videoconsulta Online (Toda España)',
-    couple: 'Consulta Pareja / Familiar'
+    in_person: 'Vor Ort in Lilienthal (Zur alten Wörpe 8)',
+    virtual: 'Online-Videoberatung (Region Bremen & bundesweit)',
+    couple: 'Paar- oder Familienberatung'
   };
 
-  const whatsappMessage = `Hola, he solicitado una cita en la web de Punto Final:
-- Nombre: ${formData.name}
-- Modalidad: ${formatLabels[format] || format}
-- Día preferido: ${selectedDate} a las ${selectedTime}
-- Teléfono: ${formData.phone}
-- Motivo: ${formData.goal}`;
+  const whatsappMessage = `Hallo, ich habe eine Terminanfrage über die Website gestellt:
+- Name: ${formData.name}
+- Beratungsart: ${formatLabels[format] || format}
+- Wunschtermin: ${selectedDate} um ${selectedTime} Uhr
+- Telefon: ${formData.phone}
+- Anliegen: ${formData.goal}`;
 
-  const whatsappUrl = `https://wa.me/34682602256?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = `https://wa.me/4917630632723?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
@@ -93,18 +89,18 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
         {/* Header */}
         <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xs">
-              PF
+            <div className="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xs">
+              ETL
             </div>
             <div>
-              <h3 className="text-base font-black text-slate-900 font-display">Reserva de Consulta Previa</h3>
-              <p className="text-xs text-slate-500 font-semibold">Con Rocío Jiménez • PUNTOFINAL. Nutrición a tu medida</p>
+              <h3 className="text-base font-black text-slate-900 font-display">Beratungstermin anfragen</h3>
+              <p className="text-xs text-slate-500 font-semibold">ErnährungsTreff Lilienthal • Zur alten Wörpe 8</p>
             </div>
           </div>
           <button
             onClick={handleResetAndClose}
-            className="p-2 rounded-full hover:bg-slate-200 text-slate-500 transition-colors"
-            aria-label="Cerrar modal"
+            className="p-2 rounded-full hover:bg-slate-200 text-slate-500 transition-colors active:scale-95"
+            aria-label="Modal schließen"
           >
             <X className="w-5 h-5" />
           </button>
@@ -117,30 +113,30 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
           {step === 1 && (
             <div className="animate-fadeIn">
               <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-4">
-                Paso 1: Selecciona la Modalidad de Consulta
+                Schritt 1: Wählen Sie die Beratungsform
               </h4>
               <div className="space-y-3 mb-6">
                 {[
                   {
                     id: 'in_person',
-                    title: 'Consulta Presencial en Sevilla',
-                    sub: 'Avenida de Finlandia 1, Edificio Bermejales Center, Módulo 20 (41012)',
+                    title: 'Persönlich in der Praxis in Lilienthal',
+                    sub: 'Zur alten Wörpe 8, 28865 Lilienthal (gute Parkmöglichkeiten)',
                     icon: MapPin,
-                    badge: 'Consulta en Sevilla'
+                    badge: 'Praxis vor Ort'
                   },
                   {
                     id: 'virtual',
-                    title: 'Videoconsulta Online (Toda España)',
-                    sub: 'Desde tu hogar por Google Meet o Zoom, con el mismo rigor y seguimiento',
+                    title: 'Bequeme Online-Videoberatung',
+                    sub: 'Von zu Hause via Video, mit genau der gleichen Betreuungsqualität',
                     icon: Video,
-                    badge: 'Más Cómoda'
+                    badge: 'Sehr flexibel'
                   },
                   {
                     id: 'couple',
-                    title: 'Consulta en Pareja o Familiar',
-                    sub: 'Aprender a comer juntos, organizar la despensa familiar y compartir recetas',
+                    title: 'Paar- oder Familienberatung',
+                    sub: 'Gemeinsam gesunde Alltagsroutinen und Wohlfühlrezepte etablieren',
                     icon: Users,
-                    badge: '2 Personas'
+                    badge: '2 Personen'
                   }
                 ].map((item) => {
                   const Icon = item.icon;
@@ -148,7 +144,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                     <div
                       key={item.id}
                       onClick={() => setFormat(item.id)}
-                      className={`p-4 rounded-2xl border cursor-pointer transition-all flex items-start justify-between ${
+                      className={`p-4 rounded-2xl border cursor-pointer transition-all flex items-start justify-between active:scale-98 ${
                         format === item.id
                           ? 'border-brand-500 bg-brand-50/70 shadow-xs'
                           : 'border-slate-200 hover:border-slate-300 bg-white'
@@ -175,9 +171,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
               <button
                 onClick={() => setStep(2)}
-                className="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition-all active:scale-98"
               >
-                <span>Continuar a Selección de Fecha</span>
+                <span>Weiter zur Terminauswahl</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -187,7 +183,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
           {step === 2 && (
             <div className="animate-fadeIn">
               <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-4">
-                Paso 2: Elige Día y Franja Horaria
+                Schritt 2: Wählen Sie Ihren Wunschzeitraum
               </h4>
 
               {/* Day selection */}
@@ -197,7 +193,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                     key={idx}
                     type="button"
                     onClick={() => setSelectedDate(d.label)}
-                    className={`p-3 rounded-2xl text-left border transition-all ${
+                    className={`p-3 rounded-2xl text-left border transition-all active:scale-98 ${
                       selectedDate === d.label
                         ? 'border-brand-500 bg-brand-50/80 text-brand-950 font-bold shadow-xs'
                         : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
@@ -205,7 +201,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                   >
                     <p className="text-xs font-bold">{d.label}</p>
                     <p className="text-[11px] text-slate-500">{d.day}</p>
-                    <span className="inline-block mt-1 text-[9px] font-black text-emerald-700 bg-emerald-100 px-1.5 py-0.2 rounded">
+                    <span className="inline-block mt-1 text-[9px] font-black text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded">
                       {d.slots}
                     </span>
                   </button>
@@ -214,7 +210,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
               {/* Time selection */}
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                Horario disponible (L-V 9:00 a 21:00)
+                Bevorzugte Uhrzeit (Mo – Fr, auch Spättermine)
               </label>
               <div className="grid grid-cols-3 gap-2 mb-6">
                 {timeSlots.map((time, idx) => (
@@ -222,13 +218,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                     key={idx}
                     type="button"
                     onClick={() => setSelectedTime(time)}
-                    className={`py-2.5 rounded-xl text-xs font-bold border transition-all ${
+                    className={`py-2.5 rounded-xl text-xs font-bold border transition-all active:scale-98 ${
                       selectedTime === time
                         ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
                         : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
                     }`}
                   >
-                    {time}
+                    {time} Uhr
                   </button>
                 ))}
               </div>
@@ -237,16 +233,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50"
+                  className="px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50 active:scale-98"
                 >
-                  Atrás
+                  Zurück
                 </button>
                 <button
                   type="button"
                   onClick={() => setStep(3)}
-                  className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center justify-center gap-2"
+                  className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center justify-center gap-2 active:scale-98"
                 >
-                  <span>Continuar a Datos del Paciente</span>
+                  <span>Weiter zu Ihren Kontaktdaten</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -257,15 +253,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
           {step === 3 && (
             <form onSubmit={handleComplete} className="animate-fadeIn space-y-4">
               <h4 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-2">
-                Paso 3: Tus Datos de Contacto
+                Schritt 3: Ihre Kontaktdaten
               </h4>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Nombre y Apellidos *</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Vor- und Nachname *</label>
                 <input
                   type="text"
                   required
-                  placeholder="Ej: Carmen Rodríguez"
+                  placeholder="z. B. Sabine Meyer"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-brand-500"
@@ -274,22 +270,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Teléfono Móvil (WhatsApp) *</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Telefonnummer (WhatsApp) *</label>
                   <input
                     type="tel"
                     required
-                    placeholder="Ej: 612 34 56 78"
+                    placeholder="z. B. 0176 12345678"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-brand-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Correo Electrónico *</label>
+                  <label className="block text-xs font-bold text-slate-700 mb-1">E-Mail-Adresse *</label>
                   <input
                     type="email"
                     required
-                    placeholder="tucorreo@ejemplo.com"
+                    placeholder="ihre-email@beispiel.de"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-brand-500"
@@ -298,26 +294,26 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Principal Motivo de Consulta</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Hauptanliegen der Beratung</label>
                 <select
                   value={formData.goal}
                   onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-brand-500 bg-white"
                 >
-                  <option>Pérdida de Grasa y Fin del Efecto Rebote</option>
-                  <option>Salud Digestiva: Hinchazón, Gases o SIBO</option>
-                  <option>Salud Hormonal: SOP, Tiroides o Ciclos Irregulares</option>
-                  <option>Psiconutrición y Ansiedad por la Comida</option>
-                  <option>Nutrición Deportiva y Composición Corporal</option>
-                  <option>Reeducación Nutricional Familiar</option>
+                  <option>Nachhaltiger Fettabbau & Ende des Jo-Jo-Effekts</option>
+                  <option>Darmgesundheit: Blähbauch, Reizdarm oder Unverträglichkeiten</option>
+                  <option>Hormonelle Balance: Schilddrüse, Zyklus oder Wechseljahre</option>
+                  <option>Ernährungspsychologie: Heißhunger & Stressessen</option>
+                  <option>Sport- & Leistungsoptimierung</option>
+                  <option>Familienernährung & Kinder</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Notas o analíticas previas (opcional)</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Anmerkungen oder vorliegende Diagnosen (optional)</label>
                 <textarea
                   rows={2}
-                  placeholder="Cuéntanos brevemente tu caso o si tienes analíticas recientes..."
+                  placeholder="Beschreiben Sie kurz Ihr Anliegen oder ob bereits ärztliche Befunde vorliegen..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:border-brand-500"
@@ -328,16 +324,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                 <button
                   type="button"
                   onClick={() => setStep(2)}
-                  className="px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50"
+                  className="px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50 active:scale-98"
                 >
-                  Atrás
+                  Zurück
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-3 rounded-xl bg-gradient-to-r from-brand-700 to-emerald-600 hover:from-brand-800 hover:to-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm"
+                  className="flex-1 py-3 rounded-xl bg-gradient-to-r from-brand-700 to-emerald-600 hover:from-brand-800 hover:to-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm active:scale-98"
                 >
                   <CalendarCheck className="w-4 h-4" />
-                  <span>Confirmar Solicitud de Cita</span>
+                  <span>Terminanfrage unverbindlich absenden</span>
                 </button>
               </div>
             </form>
@@ -350,18 +346,19 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                 <CheckCircle2 className="w-9 h-9" />
               </div>
               <h4 className="text-xl font-black text-slate-900 font-display mb-1">
-                ¡Solicitud Recibida con Éxito!
+                Terminanfrage erfolgreich erhalten!
               </h4>
               <p className="text-xs text-slate-600 mb-6 max-w-sm mx-auto">
-                He registrado tus preferencias. Me pondré en contacto contigo por teléfono o WhatsApp para confirmar la hora definitiva.
+                Vielen Dank! Wir haben Ihre Wunschangaben vermerkt und melden uns zeitnah per Telefon oder WhatsApp zur finalen Terminbestätigung.
               </p>
 
               {/* Summary Box */}
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs mb-6 space-y-1.5">
-                <p><strong className="text-slate-800">Paciente:</strong> {formData.name}</p>
-                <p><strong className="text-slate-800">Modalidad:</strong> {formatLabels[format]}</p>
-                <p><strong className="text-slate-800">Preferencia:</strong> {selectedDate} a las {selectedTime}</p>
-                <p><strong className="text-slate-800">Teléfono:</strong> {formData.phone}</p>
+                <p><strong className="text-slate-800">Name:</strong> {formData.name}</p>
+                <p><strong className="text-slate-800">Beratung:</strong> {formatLabels[format]}</p>
+                <p><strong className="text-slate-800">Wunschzeit:</strong> {selectedDate} um {selectedTime} Uhr</p>
+                <p><strong className="text-slate-800">Telefon:</strong> {formData.phone}</p>
+                <p><strong className="text-slate-800">Praxis:</strong> ErnährungsTreff Lilienthal (Zur alten Wörpe 8)</p>
               </div>
 
               {/* Direct WhatsApp button */}
@@ -370,17 +367,17 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-all"
+                  className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-all active:scale-98"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Confirmar al instante por WhatsApp (+34 682 60 22 56)</span>
+                  <span>Direkt per WhatsApp bestätigen (+49 176 30632723)</span>
                 </a>
 
                 <button
                   onClick={handleResetAndClose}
                   className="w-full py-2.5 rounded-xl text-slate-600 hover:text-slate-900 text-xs font-semibold"
                 >
-                  Cerrar ventana
+                  Fenster schließen
                 </button>
               </div>
             </div>

@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { Sparkles, RotateCw, Eye } from 'lucide-react';
+import { RotateCw, Eye } from 'lucide-react';
 
 export const Hero3DCanvas: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
-  const [activeNutrient, setActiveNutrient] = useState<string>('Antioxidants');
   const [isRotating, setIsRotating] = useState<boolean>(true);
   const isRotatingRef = useRef(true);
 
@@ -35,12 +34,10 @@ export const Hero3DCanvas: React.FC = () => {
     scene.add(mainGroup);
 
     // 1. Central 3D Stylized Avocado / Organic Fruit
-    // Outer green flesh
     const fruitGroup = new THREE.Group();
     
-    // Pear/Avocado shape using LatheGeometry or deformed sphere
+    // Pear/Avocado shape using deformed sphere
     const fruitGeo = new THREE.SphereGeometry(1.6, 64, 64);
-    // Deform vertices slightly to make it an organic pear/avocado silhouette
     const pos = fruitGeo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
       const y = pos.getY(i);
@@ -59,7 +56,7 @@ export const Hero3DCanvas: React.FC = () => {
       metalness: 0.05,
       clearcoat: 0.8,
       clearcoatRoughness: 0.1,
-      transmission: 0.2, // soft translucent organic jelly feel
+      transmission: 0.2,
       thickness: 1.2,
       ior: 1.45,
     });
@@ -98,107 +95,81 @@ export const Hero3DCanvas: React.FC = () => {
       color: new THREE.Color('#f59e0b'),
       transparent: true,
       opacity: 0.25,
+      wireframe: true,
     });
-    const ringGeo2 = new THREE.TorusGeometry(3.2, 0.015, 16, 100);
+    const ringGeo2 = new THREE.TorusGeometry(3.1, 0.02, 16, 100);
     const ringMesh2 = new THREE.Mesh(ringGeo2, ringMat2);
     ringMesh2.rotation.x = -Math.PI / 4;
-    ringMesh2.rotation.z = Math.PI / 5;
+    ringMesh2.rotation.y = Math.PI / 4;
     mainGroup.add(ringMesh2);
 
-    // 3. Orbiting Nutrient Spheres (Vitamin C, Zinc, Omega-3, Polyphenols)
-    const nutrientGroup = new THREE.Group();
-    const nutrientData = [
-      { name: 'Vitamina C', color: '#fbbf24', radius: 2.7, speed: 0.015, size: 0.28, phase: 0 },
-      { name: 'Omega-3', color: '#38bdf8', radius: 3.1, speed: 0.011, size: 0.32, phase: 2.1 },
-      { name: 'Antioxidantes', color: '#ec4899', radius: 2.5, speed: 0.018, size: 0.25, phase: 4.2 },
-      { name: 'Microbiota y Probióticos', color: '#22c55e', radius: 3.3, speed: 0.009, size: 0.34, phase: 1.1 },
-      { name: 'Proteína de Calidad', color: '#a855f7', radius: 2.9, speed: 0.013, size: 0.26, phase: 3.5 },
-    ];
-
-    const nutrientMeshes: THREE.Mesh[] = [];
-
-    nutrientData.forEach((item) => {
-      const geo = new THREE.SphereGeometry(item.size, 32, 32);
-      const mat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(item.color),
-        roughness: 0.1,
-        metalness: 0.1,
-        emissive: new THREE.Color(item.color),
-        emissiveIntensity: 0.35,
-      });
-      const mesh = new THREE.Mesh(geo, mat);
-      nutrientMeshes.push(mesh);
-      nutrientGroup.add(mesh);
+    // 3. Floating Nutrient Molecules / Cellular Spheres
+    const particleCount = 28;
+    const particleGeo = new THREE.SphereGeometry(0.08, 16, 16);
+    const particleMat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color('#22c55e'),
+      emissive: new THREE.Color('#16a34a'),
+      emissiveIntensity: 0.4,
+      roughness: 0.2,
     });
 
-    mainGroup.add(nutrientGroup);
-
-    // 4. Floating Ambient Micro-particles
-    const particleCount = 120;
-    const particlePositions = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount * 3; i += 3) {
-      particlePositions[i] = (Math.random() - 0.5) * 10;
-      particlePositions[i + 1] = (Math.random() - 0.5) * 8;
-      particlePositions[i + 2] = (Math.random() - 0.5) * 6;
+    const particles = new THREE.Group();
+    for (let i = 0; i < particleCount; i++) {
+      const p = new THREE.Mesh(particleGeo, particleMat);
+      const angle = (i / particleCount) * Math.PI * 2;
+      const radius = 2.4 + Math.sin(i * 3) * 0.7;
+      p.position.set(
+        Math.cos(angle) * radius,
+        (Math.random() - 0.5) * 3.2,
+        Math.sin(angle) * radius
+      );
+      particles.add(p);
     }
-    const particleGeo = new THREE.BufferGeometry();
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-    const particleMat = new THREE.PointsMaterial({
-      color: new THREE.Color('#86efac'),
-      size: 0.08,
-      transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending,
-    });
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
+    mainGroup.add(particles);
 
-    // 5. Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
+    // 4. Lighting Setup
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0xfff7ed, 2.2);
-    keyLight.position.set(5, 7, 5);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+    keyLight.position.set(5, 8, 6);
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0xdcfce7, 1.5);
-    fillLight.position.set(-6, -3, 3);
+    const fillLight = new THREE.PointLight(0x4ade80, 2.2, 10);
+    fillLight.position.set(-5, -2, 3);
     scene.add(fillLight);
 
-    const rimLight = new THREE.PointLight(0x22c55e, 2, 20);
-    rimLight.position.set(0, 4, -4);
-    scene.add(rimLight);
+    const warmLight = new THREE.PointLight(0xfbbf24, 1.8, 10);
+    warmLight.position.set(3, -4, 4);
+    scene.add(warmLight);
 
-    // Mouse & Touch Tracking
-    let targetRotationX = 0;
-    let targetRotationY = 0;
-    let mouseX = 0;
-    let mouseY = 0;
+    // Pointer Interaction & Smooth Drag
     let isDragging = false;
-    let previousMousePosition = { x: 0, y: 0 };
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+    let targetRotY = 0;
+    let targetRotX = 0;
 
     const handlePointerMove = (e: MouseEvent | TouchEvent) => {
       const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
       const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-      const rect = currentMount.getBoundingClientRect();
-
-      mouseX = ((clientX - rect.left) / rect.width) * 2 - 1;
-      mouseY = -(((clientY - rect.top) / rect.height) * 2 - 1);
 
       if (isDragging) {
-        const deltaX = clientX - previousMousePosition.x;
-        const deltaY = clientY - previousMousePosition.y;
-        targetRotationY += deltaX * 0.01;
-        targetRotationX += deltaY * 0.01;
+        const deltaX = clientX - prevMouseX;
+        const deltaY = clientY - prevMouseY;
+        targetRotY += deltaX * 0.007;
+        targetRotX += deltaY * 0.007;
       }
-      previousMousePosition = { x: clientX, y: clientY };
+      prevMouseX = clientX;
+      prevMouseY = clientY;
     };
 
     const handleMouseDown = (e: MouseEvent | TouchEvent) => {
       isDragging = true;
       const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
       const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-      previousMousePosition = { x: clientX, y: clientY };
+      prevMouseX = clientX;
+      prevMouseY = clientY;
     };
 
     const handleMouseUp = () => {
@@ -208,45 +179,37 @@ export const Hero3DCanvas: React.FC = () => {
     currentMount.addEventListener('mousemove', handlePointerMove);
     currentMount.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
+
     currentMount.addEventListener('touchmove', handlePointerMove, { passive: true });
     currentMount.addEventListener('touchstart', handleMouseDown, { passive: true });
     window.addEventListener('touchend', handleMouseUp);
 
     // Animation Loop
     let animationFrameId: number;
-    let clock = new THREE.Clock();
+    const clock = new THREE.Clock();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
-      // Autonomous gentle spin if enabled
       if (isRotatingRef.current && !isDragging) {
-        fruitGroup.rotation.y = elapsedTime * 0.45;
-        fruitGroup.position.y = Math.sin(elapsedTime * 1.5) * 0.12;
-        ringMesh1.rotation.z = elapsedTime * 0.15;
-        ringMesh2.rotation.z = -elapsedTime * 0.2;
+        targetRotY += 0.006;
       }
 
-      // Smooth camera/group tilt following mouse
-      mainGroup.rotation.y += (targetRotationY + mouseX * 0.4 - mainGroup.rotation.y) * 0.05;
-      mainGroup.rotation.x += (targetRotationX - mouseY * 0.3 - mainGroup.rotation.x) * 0.05;
+      // Smooth damping interpolation
+      mainGroup.rotation.y += (targetRotY - mainGroup.rotation.y) * 0.08;
+      mainGroup.rotation.x += (targetRotX - mainGroup.rotation.x) * 0.08;
 
-      // Orbit nutrients in 3D paths
-      nutrientData.forEach((item, index) => {
-        const mesh = nutrientMeshes[index];
-        const angle = elapsedTime * item.speed * 8 + item.phase;
-        mesh.position.x = Math.cos(angle) * item.radius;
-        mesh.position.z = Math.sin(angle) * item.radius;
-        mesh.position.y = Math.sin(angle * 2 + index) * 0.7;
+      // Gentle floating oscillation
+      fruitGroup.position.y = Math.sin(elapsedTime * 1.5) * 0.12;
+      fruitGroup.rotation.z = Math.sin(elapsedTime * 0.8) * 0.05;
 
-        // Bob size slightly
-        const scale = 1 + Math.sin(elapsedTime * 3 + index) * 0.1;
-        mesh.scale.set(scale, scale, scale);
-      });
+      // Rotate rings with independent speeds
+      ringMesh1.rotation.z = elapsedTime * 0.2;
+      ringMesh2.rotation.z = -elapsedTime * 0.15;
 
-      // Animate ambient particles gently
-      particles.rotation.y = elapsedTime * 0.05;
+      // Particles dynamic breathing orbit
+      particles.rotation.y = elapsedTime * 0.12;
       particles.rotation.x = Math.sin(elapsedTime * 0.03) * 0.2;
 
       renderer.render(scene, camera);
@@ -283,12 +246,12 @@ export const Hero3DCanvas: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[380px] sm:h-[460px] lg:h-[540px] flex items-center justify-center select-none">
+    <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[500px] flex items-center justify-center select-none">
       {/* Three.js Canvas Container */}
       <div 
         ref={mountRef} 
-        className="w-full h-full cursor-grab active:cursor-grabbing" 
-        title="Arrastra con el ratón o desliza con el dedo para girar el modelo 3D"
+        className="w-full h-full cursor-grab active:cursor-grabbing touch-pan-y" 
+        title="Mit der Maus ziehen oder mit dem Finger wischen, um das 3D-Modell zu drehen"
       />
 
       {/* Floating 3D Interaction Control Overlay */}
@@ -302,29 +265,30 @@ export const Hero3DCanvas: React.FC = () => {
           } backdrop-blur-md`}
         >
           <RotateCw className={`w-3.5 h-3.5 ${isRotating ? 'animate-spin-slow' : ''}`} />
-          <span>{isRotating ? 'Giro automático' : 'En pausa'}</span>
+          <span>{isRotating ? 'Auto-Drehung an' : 'Pausiert'}</span>
         </button>
       </div>
 
       {/* Nutrient quick indicator badges around 3D viewport */}
       <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-auto flex flex-wrap gap-2 justify-center sm:justify-start pointer-events-auto">
         {[
-          { label: '🥑 Comida Real', color: 'bg-emerald-50 text-emerald-900 border-emerald-200' },
-          { label: '✨ Cero Productos Milagro', color: 'bg-amber-50 text-amber-900 border-amber-200' },
-          { label: '🧬 Salud Digestiva', color: 'bg-teal-50 text-teal-900 border-teal-200' },
+          { label: '🥑 Natürliche Vollwertkost', color: 'bg-emerald-50 text-emerald-900 border-emerald-200' },
+          { label: '✨ Ohne Diätpulver & Verbote', color: 'bg-amber-50 text-amber-900 border-amber-200' },
+          { label: '🧬 Darm- & Stoffwechselbalance', color: 'bg-teal-50 text-teal-900 border-teal-200' },
         ].map((item, idx) => (
           <span
             key={idx}
-            className={`text-xs px-3 py-1 rounded-full font-bold border shadow-xs backdrop-blur-md ${item.color}`}
+            className={`text-xs px-3 py-1 rounded-full font-bold border shadow-xs backdrop-blur-md ${item.color} animate-subtle-bounce`}
+            style={{ animationDelay: `${idx * 0.3}s` }}
           >
             {item.label}
           </span>
         ))}
       </div>
 
-      <div className="absolute bottom-2 right-2 hidden lg:flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-slate-200/60 pointer-events-none">
+      <div className="absolute bottom-2 right-2 hidden lg:flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-white/85 backdrop-blur-sm px-2.5 py-1 rounded-full border border-slate-200/60 pointer-events-none">
         <Eye className="w-3 h-3 text-brand-600" />
-        <span>Interactivo 3D: Arrastra para rotar</span>
+        <span>Interaktives 3D-Modell: Zum Drehen ziehen</span>
       </div>
     </div>
   );

@@ -3,434 +3,431 @@ import {
   Utensils, 
   Clock, 
   Flame, 
-  ChevronRight, 
-  Sparkles, 
-  CalendarDays, 
-  Layers, 
-  ExternalLink,
   BookOpen
 } from 'lucide-react';
 import { Card3DTilt } from './Card3DTilt';
 import { RecipeModal, RecipeData } from './RecipeModal';
 
 const weeklyMealData: Record<string, RecipeData[]> = {
-  'Lunes': [
+  'Montag': [
     {
-      id: 'lun-1',
-      name: 'Tostada de Masa Madre con AOVE, Tomate Rallado y Huevos Poché',
-      category: 'Desayuno Energético',
+      id: 'mo-1',
+      name: 'Vollkorn-Sauerteigbrot mit Avocado, Tomate & pochiertem Landei',
+      category: 'Vitales Frühstück',
       image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80',
-      time: '10 min',
+      time: '10 Min.',
       servings: 1,
       calories: 410,
       protein: 24,
       carbs: 28,
       fats: 22,
       fiber: 6,
-      description: 'Clásico desayuno mediterráneo optimizado: grasas cardiosaludables y proteína saciante.',
-      benefits: ['Colina y luteína para la función cognitiva', 'Polifenoles del Aceite de Oliva Virgen Extra', 'Sin picos bruscos de glucosa'],
+      description: 'Ausgewogenes Power-Frühstück: Hochwertiges Eiweiß, komplexe Kohlenhydrate und ungesättigte Fettsäuren für langanhaltende Konzentration.',
+      benefits: ['Cholin & Lutein für Nervenkraft und Gedächtnis', 'Wertvolle Polyphenole & einfach ungesättigte Fettsäuren', 'Keine Blutzuckerspitzen – kein Vormittagstief'],
       ingredients: [
-        '1 rebanada grande de pan artesano de masa madre 100% integral',
-        '2 huevos de gallinas camperas (cocidos o poché)',
-        '1 tomate de rama maduro rallado con su pulpa',
-        '1 cucharada sopera de AOVE (Aceite de Oliva Virgen Extra picual)',
-        'Unas hojas de brotes verdes o rúcula',
-        'Pizca de sal marina virgen y orégano silvestre'
+        '1 dicke Scheibe handwerkliches Vollkorn-Sauerteigbrot',
+        '2 frische Eier aus regionaler Freilandhaltung (pochiert oder weich gekocht)',
+        '1/2 reife Avocado, fein zerdrückt',
+        '1 aromatische Strauchtomate in Scheiben',
+        '1 Handvoll Rucola oder Babyspinat',
+        'Prise Meersalz, bunter Pfeffer und frischer Schnittlauch'
       ],
       instructions: [
-        'Tuesta el pan de masa madre ligeramente hasta que quede crujiente por fuera.',
-        'Escalda o pocha los huevos en agua caliente con un chorrito de vinagre durante 3-4 minutos.',
-        'Unta generosamente el tomate rallado sobre la tostada y riega con el AOVE virgen extra.',
-        'Coloca los huevos pochados y los brotes frescos encima.',
-        'Finaliza con una pizca de sal marina y orégano.'
+        'Das Sauerteigbrot im Toaster oder in der Pfanne leicht knusprig anrösten.',
+        'Die Eier in leicht siedendem Wasser mit einem Schuss Apfelessig 3–4 Minuten pochieren.',
+        'Die zerdrückte Avocado auf dem warmen Brot verstreichen, mit Tomatenscheiben und Rucola belegen.',
+        'Die pochierten Eier vorsichtig daraufsetzen.',
+        'Mit einer Prise Meersalz, frischem Pfeffer und Schnittlauch vollenden.'
       ],
       micronutrients: [
-        { label: 'Colina', amount: '280mg', dv: '51%' },
-        { label: 'Vitamina D3', amount: '82 UI', dv: '21%' },
-        { label: 'Licopeno', amount: '3.2mg', dv: 'Óptimo' },
-        { label: 'Potasio', amount: '540mg', dv: '14%' },
+        { label: 'Cholin', amount: '280mg', dv: '51%' },
+        { label: 'Vitamin D3', amount: '85 IE', dv: '22%' },
+        { label: 'Lycopin', amount: '3.4mg', dv: 'Optimal' },
+        { label: 'Kalium', amount: '560mg', dv: '15%' },
       ]
     },
     {
-      id: 'lun-2',
-      name: 'Lomo de Salmón al Horno con Quinoa y Verduras Asadas de Huertana',
-      category: 'Comida / Almuerzo Equilibrado',
+      id: 'mo-2',
+      name: 'Ofenfrisches Lachsfilet auf Quinoa & buntem Röstgemüse',
+      category: 'Ausgewogenes Mittagessen',
       image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&auto=format&fit=crop&q=80',
-      time: '25 min',
+      time: '25 Min.',
       servings: 1,
       calories: 560,
       protein: 42,
       carbs: 38,
       fats: 24,
       fiber: 9,
-      description: 'Excelente aporte de ácidos grasos Omega-3 EPA/DHA antiinflamatorios y fibra prebiótica.',
-      benefits: ['Reduce marcadores inflamatorios celulares', 'Fibra saciante para la microbiota intestinal', 'Alta densidad de micronutrientes'],
+      description: 'Hervorragende Quelle für entzündungshemmende Omega-3-Fettsäuren (EPA/DHA), kombiniert mit darmfreundlichen Ballaststoffen.',
+      benefits: ['Schützt Gefäße und dämpft zelluläre Entzündungen', 'Präbiotische Ballaststoffe für das Darmmikrobiom', 'Hohe Nährstoffdichte ohne Völlegefühl'],
       ingredients: [
-        '160g de lomo de salmón fresco',
-        '60g de quinoa en seco (cocida al punto con laurel)',
-        '1 calabacín pequeño y 1 pimiento rojo en dados',
-        '1 taza de espinacas tiernas',
-        '1 cucharada de AOVE y zumo de medio limón',
-        'Hierbas provenzales, sal y pimienta negra'
+        '160g frisches Lachsfilet (nachhaltiger Wild- oder Bio-Fang)',
+        '60g Quinoa (im Gemüsefond bissfest gegart)',
+        '1 kleine Zucchini und 1 rote Paprika in Würfeln',
+        '1 Tasse frischer Blattspinat',
+        '1 EL kaltgepresstes Olivenöl & Saft einer halben Bio-Zitrone',
+        'Kräuter der Provence, Meersalz und Pfeffer'
       ],
       instructions: [
-        'Precalienta el horno a 190°C. Hornea los dados de verduras con un chorrito de AOVE durante 18 min.',
-        'Cuece la quinoa con agua y una hoja de laurel durante 12-14 minutos.',
-        'Cocina el salmón a la plancha o al horno con hierbas y limón hasta que esté jugoso.',
-        'Mezcla la quinoa tibia con las verduras asadas y las espinacas frescas.',
-        'Sirve con el salmón por encima y un toque de limón fresco.'
+        'Backofen auf 190°C vorheizen. Das Gemüse mit etwas Olivenöl und Kräutern 18 Min. rösten.',
+        'Quinoa in der doppelten Menge Wasser mit Lorbeerblatt ca. 12–14 Min. sanft köcheln.',
+        'Den Lachs mit Zitrone beträufeln und in der Pfanne oder im Ofen saftig garen.',
+        'Die Quinoa mit dem Röstgemüse und frischem Blattspinat mischen.',
+        'Mit dem Lachsfilet anrichten und mit frischem Zitronenabrieb garnieren.'
       ],
       micronutrients: [
-        { label: 'Omega-3 EPA/DHA', amount: '2.2g', dv: '190%' },
-        { label: 'Vitamina B12', amount: '4.6mcg', dv: '192%' },
-        { label: 'Magnesio', amount: '120mg', dv: '30%' },
-        { label: 'Selenio', amount: '46mcg', dv: '84%' },
+        { label: 'Omega-3 (EPA/DHA)', amount: '2.3g', dv: '195%' },
+        { label: 'Vitamin B12', amount: '4.8µg', dv: '200%' },
+        { label: 'Magnesium', amount: '125mg', dv: '32%' },
+        { label: 'Selen', amount: '48µg', dv: '87%' },
       ]
     },
     {
-      id: 'lun-3',
-      name: 'Yogur Griego Natural con Arándanos Silvestres y Nueces del País',
-      category: 'Merienda Saludable',
+      id: 'mo-3',
+      name: 'Cremiger Naturjoghurt mit Waldheidelbeeren, Walnüssen & Zimt',
+      category: 'Gesunder Nachmittagssnack',
       image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&auto=format&fit=crop&q=80',
-      time: '4 min',
+      time: '4 Min.',
       servings: 1,
       calories: 220,
       protein: 18,
       carbs: 14,
       fats: 9,
       fiber: 4,
-      description: 'Probióticos naturales vivos combinados con polifenoles antioxidantes.',
-      benefits: ['Mejora la diversidad bacteriana intestinal', 'Control del apetito previo a la cena', 'Cero azúcar añadido'],
+      description: 'Lebende Milchsäurebakterien vereint mit zellschützenden Anthocyanen und gesunden Fetten gegen Heißhunger.',
+      benefits: ['Stärkt die Darmflora durch aktive Probiotika', 'Stabiler Blutzucker vor dem Abendessen', 'Ohne jeglichen Zuckerzusatz'],
       ingredients: [
-        '150g de yogur griego natural sin azúcar (o kéfir de leche)',
-        '1 puñado generoso de arándanos frescos',
-        '4-5 mitades de nueces picadas',
-        '1 cucharadita de semillas de chía',
-        'Pizca de canela de Ceilán'
+        '150g stichfester griechischer Naturjoghurt oder cremiger Bio-Magerquark',
+        '1 Handvoll frische Heidelbeeren (Blaubeeren)',
+        '4–5 halbe Walnusskerne, grob gehackt',
+        '1 TL Chiasamen',
+        '1 Prise echter Ceylon-Zimt'
       ],
       instructions: [
-        'Vierte el yogur griego en un cuenco.',
-        'Añade los arándanos y las nueces troceadas por encima.',
-        'Espolvorea las semillas de chía y un toque de canela de Ceilán para regular la insulina.'
+        'Den Joghurt in eine Schale geben.',
+        'Mit Heidelbeeren und gehackten Walnüssen bestreuen.',
+        'Mit Chiasamen und Ceylon-Zimt verfeinern (Zimt unterstützt die Insulinsensitivität).'
       ],
       micronutrients: [
-        { label: 'Calcio', amount: '230mg', dv: '23%' },
-        { label: 'Polifenoles', amount: '380mg', dv: 'Óptimo' },
-        { label: 'Ácido Alfa-Linolénico', amount: '1.2g', dv: '75%' },
-        { label: 'Zinc', amount: '1.8mg', dv: '16%' },
+        { label: 'Calcium', amount: '235mg', dv: '24%' },
+        { label: 'Anthocyane', amount: '380mg', dv: 'Optimal' },
+        { label: 'Alpha-Linolensäure', amount: '1.2g', dv: '75%' },
+        { label: 'Zink', amount: '1.9mg', dv: '18%' },
       ]
     },
     {
-      id: 'lun-4',
-      name: 'Crema Casera de Calabaza y Puerro con Merluza al Vapor y Semillas',
-      category: 'Cena Reparadora y Ligera',
+      id: 'mo-4',
+      name: 'Würzige Kürbis-Lauch-Cremesuppe mit gedämpftem Kabeljau',
+      category: 'Regeneratives Abendessen',
       image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=80',
-      time: '20 min',
+      time: '20 Min.',
       servings: 1,
       calories: 380,
       protein: 34,
       carbs: 26,
       fats: 11,
       fiber: 7,
-      description: 'Cena digestiva y rica en triptófano para favorecer el descanso nocturno.',
-      benefits: ['Fácil digestión nocturna sin reflujo', 'Favorece la síntesis de melatonina', 'Calma el sistema nervioso'],
+      description: 'Leicht bekömmliches, wärmendes Abendessen. Reich an Tryptophan für einen tiefen, erholsamen Nachtschlaf.',
+      benefits: ['Leicht verdaulich ohne nächtliches Völlegefühl', 'Fördert die natürliche Melatoninsynthese', 'Beruhigt das vegetative Nervensystem'],
       ingredients: [
-        '180g de filete de merluza fresca del Cantábrico',
-        '250g de crema de calabaza asada, puerro y cebolla con AOVE',
-        '1 cucharada de pipas de calabaza tostadas',
-        '1 cucharadita de AOVE crudo',
-        'Pizca de sal marina virgen y pimienta blanca'
+        '180g frisches Kabeljaufilet (Dorsch)',
+        '250g feines Kürbis-Lauch-Püree mit etwas Ingwer und Muskat',
+        '1 EL geröstete Kürbiskerne',
+        '1 TL kaltgepresstes Kürbiskernöl oder Rapsöl',
+        'Meersalz, weißer Pfeffer und Petersilie'
       ],
       instructions: [
-        'Cocina la merluza al vapor o en papillote durante 6-8 minutos con una pizca de sal.',
-        'Calienta suavemente la crema de calabaza y puerro.',
-        'Sirve la crema en plato hondo con las lascas de merluza tierna en el centro.',
-        'Corona con las pipas de calabaza crujientes y un hilo fino de AOVE virgen extra.'
+        'Den Kabeljau schonend im Dämpfeinsatz oder Ofen ca. 8 Min. sanft garen.',
+        'Die Kürbissuppe erwärmen und mit Muskat und einem Hauch Ingwer abschmecken.',
+        'Die Suppe in einen tiefen Teller füllen und das zarte Fischfilet in die Mitte setzen.',
+        'Mit gerösteten Kürbiskernen und feinen Kräutern anrichten.'
       ],
       micronutrients: [
-        { label: 'Triptófano', amount: '310mg', dv: '110%' },
-        { label: 'Beta-caroteno', amount: '4800mcg', dv: '80%' },
-        { label: 'Fósforo', amount: '290mg', dv: '41%' },
-        { label: 'Yodo', amount: '72mcg', dv: '48%' },
+        { label: 'Tryptophan', amount: '310mg', dv: '110%' },
+        { label: 'Beta-Carotin', amount: '4800µg', dv: '80%' },
+        { label: 'Phosphor', amount: '290mg', dv: '41%' },
+        { label: 'Jod', amount: '75µg', dv: '50%' },
       ]
     }
   ],
-  'Martes': [
+  'Dienstag': [
     {
-      id: 'mar-1',
-      name: 'Tortilla Francesa de Espinacas Frescas y Queso de Cabra con Aguacate',
-      category: 'Desayuno Energético',
+      id: 'di-1',
+      name: 'Frisches Spinat-Kräuter-Omelett mit Ziegenkäse & Avocado',
+      category: 'Vitales Frühstück',
       image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80',
-      time: '10 min',
+      time: '10 Min.',
       servings: 1,
       calories: 420,
       protein: 26,
       carbs: 8,
       fats: 30,
       fiber: 5,
-      description: 'Bajo impacto glucémico para mantener claridad mental y foco toda la mañana.',
-      benefits: ['Estabilidad glucémica prolongada', 'Rico en magnesio y folatos', 'Sensación de saciedad duradera'],
+      description: 'Niedrige glykämische Last für anhaltende mentale Klarheit und Konzentration über den gesamten Vormittag.',
+      benefits: ['Stabile Energie ohne Blutzuckerachterbahn', 'Reich an organischem Magnesium und Folat', 'Langanhaltendes Sättigungsgefühl'],
       ingredients: [
-        '2 huevos camperos',
-        '1 taza de espinacas baby salteadas',
-        '30g de queso de cabra de rulo o tierno',
-        '1/3 de aguacate maduro en láminas',
-        '1 cucharadita de AOVE'
+        '2–3 Eier aus Freilandhaltung',
+        '1 Handvoll frischer Babyspinat',
+        '30g milder Ziegenfrischkäse oder Ziegenrolle',
+        '1/3 reife Avocado in Spalten',
+        '1 TL natives Raps- oder Olivenöl'
       ],
       instructions: [
-        'Bate los huevos con una pizca de sal.',
-        'Saltea las espinacas en sartén con unas gotas de AOVE.',
-        'Vierte los huevos, añade el queso desmenuzado y pliega la tortilla jugosa.',
-        'Sirve acompañada de las láminas de aguacate fresco.'
+        'Die Eier mit einer Prise Salz und Pfeffer verquirlen.',
+        'Den Spinat kurz in der Pfanne mit wenigen Tropfen Öl zusammenfallen lassen.',
+        'Die Eimasse darübergießen, den Ziegenkäse darüberkrümeln und bei mittlerer Hitze stocken lassen.',
+        'Mit den Avocadospalten servieren.'
       ],
       micronutrients: [
-        { label: 'Magnesio', amount: '95mg', dv: '24%' },
-        { label: 'Folato', amount: '160mcg', dv: '40%' },
-        { label: 'Vitamina B6', amount: '0.4mg', dv: '25%' },
-        { label: 'Hierro hemo', amount: '2.8mg', dv: '16%' }
+        { label: 'Magnesium', amount: '95mg', dv: '25%' },
+        { label: 'Folat (Folsäure)', amount: '160µg', dv: '40%' },
+        { label: 'Vitamin B6', amount: '0.4mg', dv: '25%' },
+        { label: 'Eisen', amount: '2.8mg', dv: '18%' }
       ]
     },
     {
-      id: 'mar-2',
-      name: 'Guiso Tradicional de Lentejas Pardinas con Verduras de Temporada',
-      category: 'Comida / Almuerzo Equilibrado',
+      id: 'di-2',
+      name: 'Herzhafter Berglinseneintopf mit Wurzelgemüse & Kräutern',
+      category: 'Ausgewogenes Mittagessen',
       image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=80',
-      time: '35 min',
+      time: '35 Min.',
       servings: 1,
       calories: 520,
       protein: 28,
       carbs: 64,
       fats: 12,
       fiber: 18,
-      description: 'Plato de cuchara emblemático, reconfortante y lleno de hierro vegetal y fibra.',
-      benefits: ['Microbiota alimentada con almidón resistente', 'Bajo índice glucémico', 'Sin embutidos ni grasas saturadas'],
+      description: 'Traditionelle Hülsenfrüchte neu gedacht: Füttert gesunde Darmbakterien mit resistenter Stärke und liefert pflanzliches Eisen.',
+      benefits: ['Optimale Nahrung für kurzkettige Fettsäuren im Darm', 'Niedriger glykämischer Index', '100% cholesterinfrei & ballaststoffreich'],
       ingredients: [
-        '80g de lentejas pardinas',
-        '1 zanahoria, 1/2 puerro, 1/2 cebolla y 1 tomate triturado',
-        '1 diente de ajo y 1 hoja de laurel',
-        '1 cucharadita de pimentón dulce de la Vera y comino molido',
-        '1 cucharada de AOVE'
+        '80g braune Berglinsen oder Alblinsen',
+        '1 Karotte, 1/2 Stange Lauch, 1 Stück Knollensellerie gewürfelt',
+        '1 Zehe Knoblauch & 1 Lorbeerblatt',
+        '1 TL milder Kreuzkümmel und Majoran',
+        '1 EL kaltgepresstes Rapsöl & 1 Spritzer Bio-Apfelessig'
       ],
       instructions: [
-        'Haz un sofrito ligero con el ajo, puerro, cebolla y pimentón.',
-        'Añade las lentejas, la zanahoria en rodajas, el laurel y cubre con agua o caldo vegetal.',
-        'Cocina a fuego lento durante 30 minutos hasta que estén tiernas y melosas.',
-        'Termina con un chorrito de AOVE crudo al servir.'
+        'Gemüsewürfel sanft andünsten, Linsen und Gewürze zugeben.',
+        'Mit Gemüsebrühe aufgießen und ca. 25–30 Min. sanft garen, bis die Linsen sämig sind.',
+        'Mit einem Schuss Apfelessig und frischen Kräutern abschmecken.'
       ],
       micronutrients: [
-        { label: 'Hierro', amount: '6.4mg', dv: '36%' },
-        { label: 'Folato', amount: '320mcg', dv: '80%' },
-        { label: 'Fibra dietética', amount: '18g', dv: '72%' },
-        { label: 'Potasio', amount: '780mg', dv: '20%' }
+        { label: 'Eisen (pflanzlich)', amount: '6.5mg', dv: '38%' },
+        { label: 'Folat', amount: '320µg', dv: '80%' },
+        { label: 'Ballaststoffe', amount: '18g', dv: '72%' },
+        { label: 'Kalium', amount: '790mg', dv: '22%' }
       ]
     },
     {
-      id: 'mar-3',
-      name: 'Manzana Asada con Canela y Puñado de Almendras Tostadas',
-      category: 'Merienda Saludable',
+      id: 'di-3',
+      name: 'Gedämpfter Zimtapfel mit knackigen gerösteten Mandeln',
+      category: 'Gesunder Nachmittagssnack',
       image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&auto=format&fit=crop&q=80',
-      time: '8 min',
+      time: '6 Min.',
       servings: 1,
       calories: 195,
       protein: 6,
       carbs: 22,
       fats: 10,
       fiber: 5,
-      description: 'Pectina prebiótica suave para reparar la mucosa digestiva.',
-      benefits: ['Pectina protectora del estómago', 'Grasas monoinsaturadas de almendra', 'Efecto saciante natural'],
+      description: 'Schonendes Pektin legt sich wie ein Schutzbalsam auf die Magenschleimhaut und beruhigt die Verdauung.',
+      benefits: ['Schützendes Apfelpektin für die Schleimhaut', 'Einfach ungesättigte Fettsäuren & Vitamin E', 'Wohltuend warm bei Süßhunger'],
       ingredients: [
-        '1 manzana reineta o golden',
-        '1 cucharadita de canela de Ceilán',
-        '20g de almendras tostadas sin sal',
-        'Unas gotas de agua o zumo de limón'
+        '1 regionaler Bio-Apfel (z. B. Boskoop oder Elstar)',
+        '1 TL Ceylon-Zimt',
+        '20g ungesalzene Mandelkerne, kurz geröstet',
+        '1 TL Zitronensaft'
       ],
       instructions: [
-        'Corta la manzana en gajos finos con canela y calienta 3 minutos al microondas u horno.',
-        'Sirve tibia acompañada de las almendras crujientes.'
+        'Den Apfel in Spalten schneiden, mit Zimt und Zitrone beträufeln.',
+        'Für 3 Min. im Topf oder in der Mikrowelle warm andämpfen.',
+        'Warm mit den knackigen Mandelkernen genießen.'
       ],
       micronutrients: [
-        { label: 'Pectina', amount: '2.8g', dv: 'Óptimo' },
-        { label: 'Vitamina E', amount: '4.2mg', dv: '28%' },
-        { label: 'Magnesio', amount: '55mg', dv: '14%' },
-        { label: 'Calcio', amount: '65mg', dv: '7%' }
+        { label: 'Vitamin E', amount: '4.8mg', dv: '32%' },
+        { label: 'Apfelpektin', amount: '3.2g', dv: 'Optimal' },
+        { label: 'Magnesium', amount: '45mg', dv: '12%' },
+        { label: 'Mangan', amount: '0.6mg', dv: '30%' }
       ]
     },
     {
-      id: 'mar-4',
-      name: 'Revuelto Jugoso de Espárragos Trigueros, Champiñones y Gambas',
-      category: 'Cena Reparadora y Ligera',
-      image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&auto=format&fit=crop&q=80',
-      time: '15 min',
+      id: 'di-4',
+      name: 'Zartes Zanderfilet auf sautiertem Fenchel & Kräuterkartoffeln',
+      category: 'Regeneratives Abendessen',
+      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80',
+      time: '25 Min.',
       servings: 1,
-      calories: 340,
-      protein: 36,
-      carbs: 9,
-      fats: 16,
+      calories: 390,
+      protein: 38,
+      carbs: 24,
+      fats: 14,
       fiber: 5,
-      description: 'Cena rápida, deliciosa y antiinflamatoria sin pesadez estomacal.',
-      benefits: ['Proteína magra de alto valor biológico', 'Drenante y depurativo gracias al espárrago', 'Muy saciante'],
+      description: 'Feiner heimischer Speisefisch. Reich an Jod und Selen, kombiniert mit krampflösendem Fenchel.',
+      benefits: ['Extrem mageres, leicht verdauliches Protein', 'Ätherische Fenchelöle gegen Blähbauch', 'Unterstützt die Schilddrüsenfunktion'],
       ingredients: [
-        '2 huevos camperos',
-        '1 manojo de espárragos trigueros cortados en trozos',
-        '100g de champiñones laminados',
-        '80g de gambas peladas',
-        '1 diente de ajo picado y perejil fresco',
-        '1 cucharada de AOVE'
+        '180g frisches Zanderfilet mit Haut',
+        '1 kleine Knolle Fenchel, in feine Streifen gehobelt',
+        '2 kleine Pellkartoffeln vom Vortag (resistente Stärke)',
+        '1 EL Olivenöl, etwas Zitronensaft & Fenchelgrün',
+        'Meersalz und weißer Pfeffer'
       ],
       instructions: [
-        'Saltea el ajo picado con los espárragos y champiñones en AOVE durante 6-7 min.',
-        'Añade las gambas 2 minutos hasta que cambien de color.',
-        'Vierte los huevos ligeramente batidos y cuaja a fuego bajo para que quede cremoso y jugoso.',
-        'Espolvorea perejil fresco picado.'
+        'Fenchelstreifen in Olivenöl sanft dünsten, bis sie glasig und aromatisch sind.',
+        'Pellkartoffelscheiben kurz mitanbraten.',
+        'Zanderfilet auf der Hautseite kross anbraten, kurz wenden und glasig durchziehen lassen.',
+        'Mit Fenchelgrün und Zitronensaft servieren.'
       ],
       micronutrients: [
-        { label: 'Selenio', amount: '42mcg', dv: '76%' },
-        { label: 'Vitamina C', amount: '18mg', dv: '20%' },
-        { label: 'Yodo', amount: '65mcg', dv: '43%' },
-        { label: 'Zinc', amount: '2.4mg', dv: '22%' }
+        { label: 'Jod', amount: '88µg', dv: '58%' },
+        { label: 'Selen', amount: '44µg', dv: '80%' },
+        { label: 'Vitamin C', amount: '42mg', dv: '45%' },
+        { label: 'Kalium', amount: '810mg', dv: '23%' }
       ]
     }
   ],
-  'Miércoles': [
+  'Mittwoch': [
     {
-      id: 'mie-1',
-      name: 'Porridge Templado de Avena Integral con Chía, Frutos Rojos y AOVE',
-      category: 'Desayuno Energético',
-      image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&auto=format&fit=crop&q=80',
-      time: '8 min',
+      id: 'mi-1',
+      name: 'Warmer Beeren-Porridge mit Chiasamen & cremigem Mandelmus',
+      category: 'Vitales Frühstück',
+      image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=800&auto=format&fit=crop&q=80',
+      time: '8 Min.',
       servings: 1,
-      calories: 390,
+      calories: 430,
       protein: 16,
-      carbs: 48,
-      fats: 14,
+      carbs: 52,
+      fats: 16,
       fiber: 11,
-      description: 'Beta-glucanos para regular el colesterol y saciedad sin bajón de media mañana.',
-      benefits: ['Control del colesterol LDL', 'Sensación de energía estable', 'Protección cardiovascular'],
+      description: 'Reich an löslichen Beta-Glucanen für gesunde Cholesterinwerte und ein ausgeglichenes Mikrobiom.',
+      benefits: ['Senkt LDL-Cholesterin durch Beta-Glucan', 'Stärkt die Darmbarriere nachhaltig', 'Wärmt den Magen am Morgen'],
       ingredients: [
-        '50g de copos de avena integral suave',
-        '200ml de bebida vegetal o leche entera fresca',
-        '1 cucharadita de semillas de chía',
-        '1 puñado de frambuesas y moras frescas',
-        '1 cucharadita de crema 100% cacahuete o almendra',
-        'Canela de Ceilán'
+        '50g zarte Vollkorn-Haferflocken',
+        '200ml ungesüßte Hafer- oder Mandelmilch (oder Wasser)',
+        '1 EL Chiasamen & 1 TL geschrotete Leinsamen',
+        '1 Tasse warme Beerenmischung (Himbeeren, Blaubeeren)',
+        '1 gehäufter TL weißes Mandelmus',
+        'Prise Vanille und Ceylon-Zimt'
       ],
       instructions: [
-        'Cuece los copos de avena con la leche y canela a fuego lento durante 4 minutos.',
-        'Vierte en el bol y añade las semillas de chía y la crema de frutos secos.',
-        'Corona con los frutos rojos frescos.'
+        'Haferflocken und Pflanzendrink mit Chiasamen aufkochen und 3–4 Min. quellen lassen.',
+        'Die warmen Beeren unterheben.',
+        'Mit Mandelmus und etwas Zimt toppen.'
       ],
       micronutrients: [
-        { label: 'Beta-glucanos', amount: '2.5g', dv: '83%' },
-        { label: 'Manganeso', amount: '2.1mg', dv: '90%' },
-        { label: 'Magnesio', amount: '110mg', dv: '28%' },
-        { label: 'Antocianinas', amount: '180mg', dv: 'Óptimo' }
+        { label: 'Beta-Glucan', amount: '3.6g', dv: '120%' },
+        { label: 'Magnesium', amount: '138mg', dv: '36%' },
+        { label: 'Zink', amount: '2.4mg', dv: '24%' },
+        { label: 'Eisen', amount: '3.4mg', dv: '22%' }
       ]
     },
     {
-      id: 'mie-2',
-      name: 'Pechuga de Pollo de Corral Marinada al Limón con Arroz Integral y Pisto',
-      category: 'Comida / Almuerzo Equilibrado',
-      image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=80',
-      time: '25 min',
+      id: 'mi-2',
+      name: 'Bunte Quinoa-Bowl mit Bio-Hähnchenbrust, Avocado & Tahini-Dressing',
+      category: 'Ausgewogenes Mittagessen',
+      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=80',
+      time: '20 Min.',
       servings: 1,
       calories: 540,
       protein: 44,
-      carbs: 52,
-      fats: 15,
+      carbs: 40,
+      fats: 20,
       fiber: 8,
-      description: 'Pisto andaluz tradicional acompañado de proteína limpia y grano entero.',
-      benefits: ['Alta densidad de antioxidantes del sofrito de verduras', 'Proteína magra para la síntesis muscular', 'Digestión ligera'],
+      description: 'Volle Nährstoffpower: Reines Bio-Eiweiß, gesunde Fette aus Sesam und Avocado sowie komplexe Energie.',
+      benefits: ['Vollständiges Aminosäurenprofil', 'Hoher Calciumgehalt durch Sesammus (Tahini)', 'Perfekt zum Vorbereiten (Meal Prep)'],
       ingredients: [
-        '170g de pechuga de pollo campero en filetes',
-        '60g de arroz integral cocido con laurel',
-        '1 taza de pisto casero (calabacín, pimiento, tomate y cebolla con AOVE)',
-        'Zumo de limón, romero fresco y sal marina'
+        '150g Bio-Hähnchenbrustfilet (in Streifen gebraten)',
+        '60g Quinoa gekocht',
+        'Gurkenscheiben, Kirschtomaten, geriebene Karotten & Kichererbsen',
+        '1 EL Sesammus (Tahini) mit Zitronensaft und etwas Wasser verrührt',
+        'Frischer Koriander oder Petersilie'
       ],
       instructions: [
-        'Marina el pollo con limón, romero y sal 15 minutos.',
-        'Haz el pollo a la plancha hasta dorar sin secarlo.',
-        'Acompaña con el arroz integral tibio y el pisto andaluz casero caliente.'
+        'Hähnchenstreifen mit etwas Kräutersalz saftig anbraten.',
+        'Quinoa als Basis in eine Schale geben.',
+        'Das bunte Rohkostgemüse und die Kichererbsen kreisförmig anrichten.',
+        'Mit den warmen Hähnchenstreifen belegen und das cremige Tahini-Dressing darüberträufeln.'
       ],
       micronutrients: [
-        { label: 'Niacina (B3)', amount: '14.8mg', dv: '92%' },
-        { label: 'Vitamina B6', amount: '0.9mg', dv: '53%' },
-        { label: 'Licopeno', amount: '4.8mg', dv: 'Óptimo' },
-        { label: 'Fósforo', amount: '340mg', dv: '48%' }
+        { label: 'Niacin (B3)', amount: '14mg', dv: '95%' },
+        { label: 'Calcium', amount: '190mg', dv: '19%' },
+        { label: 'Phosphor', amount: '410mg', dv: '58%' },
+        { label: 'Zink', amount: '3.1mg', dv: '31%' }
       ]
     },
     {
-      id: 'mie-3',
-      name: 'Hummus Tradicional con Bastoncitos de Zanahoria y Pepino',
-      category: 'Merienda Saludable',
-      image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=800&auto=format&fit=crop&q=80',
-      time: '5 min',
+      id: 'mi-3',
+      name: 'Knackige Gemüsesticks mit hausgemachtem Kräuter-Leinöl-Quark',
+      category: 'Gesunder Nachmittagssnack',
+      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&auto=format&fit=crop&q=80',
+      time: '5 Min.',
       servings: 1,
-      calories: 210,
-      protein: 8,
-      carbs: 22,
-      fats: 10,
-      fiber: 6,
-      description: 'Fibra crujiente e hidratación con grasas vegetales de sésamo y oliva.',
-      benefits: ['Salud de la microbiota', 'Vitamina A en forma de carotenos', 'Aporte saciante entre horas'],
-      ingredients: [
-        '3 cucharadas soperas de hummus de garbanzo con tahini y AOVE',
-        '1 zanahoria fresca pelada en bastones',
-        '1/2 pepino crujiente en bastones',
-        'Toque de pimentón de la Vera'
-      ],
-      instructions: [
-        'Sirve el hummus con un chorrito de AOVE y pimentón.',
-        'Acompaña con los bastoncitos de verduras para dipear.'
-      ],
-      micronutrients: [
-        { label: 'Beta-caroteno', amount: '6200mcg', dv: '100%' },
-        { label: 'Calcio', amount: '70mg', dv: '8%' },
-        { label: 'Vitamina C', amount: '12mg', dv: '15%' },
-        { label: 'Hierro', amount: '1.9mg', dv: '11%' }
-      ]
-    },
-    {
-      id: 'mie-4',
-      name: 'Lubina a la Espalda con Patata Panadera al Horno y Pimientos Verdes',
-      category: 'Cena Reparadora y Ligera',
-      image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&auto=format&fit=crop&q=80',
-      time: '25 min',
-      servings: 1,
-      calories: 410,
-      protein: 38,
-      carbs: 24,
-      fats: 15,
+      calories: 180,
+      protein: 19,
+      carbs: 11,
+      fats: 6,
       fiber: 4,
-      description: 'Pescado blanco salvaje al horno con ajitos dorados y patata asada.',
-      benefits: ['Muy bajo en calorías y fácil digestión', 'Alto en yodo y fósforo', 'Ideal para conciliar el sueño'],
+      description: 'Der Klassiker aus der traditionellen Ernährungstherapie: Wertvolles Leinöl gebunden in Milcheiweiß.',
+      benefits: ['Maximale Bioverfügbarkeit von Omega-3', 'Erfrischend und sättigend', 'Reich an l-Glutamin für die Darmwand'],
       ingredients: [
-        '1 pieza de lubina abierta en libro para horno',
-        '1 patata mediana en rodajas finas',
-        '1 pimiento verde italiano',
-        '2 dientes de ajo fileteados y una cayena',
-        '1 cucharada de vinagre de manzana y AOVE'
+        '120g Magerquark cremig geschlagen',
+        '1 TL frisches Leinöl (kaltgepresst)',
+        'Viel Schnittlauch, Petersilie und Kresse',
+        'Gurken-, Karotten- und Paprikasticks zum Dippen'
       ],
       instructions: [
-        'Hornea primero las patatas y el pimiento con unas gotas de AOVE 15 minutos.',
-        'Coloca la lubina encima con la piel hacia abajo y hornea 10 minutos.',
-        'Dora los ajitos en AOVE, añade el vinagre y vuelca sobre la lubina recién horneada.'
+        'Den Quark mit Leinöl, Salz, Pfeffer und den frischen Kräutern glattrühren.',
+        'Das knackige Gemüse in mundgerechte Sticks schneiden und frisch dippen.'
       ],
       micronutrients: [
-        { label: 'Yodo', amount: '85mcg', dv: '56%' },
-        { label: 'Potasio', amount: '820mg', dv: '21%' },
-        { label: 'Vitamina D', amount: '65 UI', dv: '16%' },
-        { label: 'Proteína neta', amount: '38g', dv: '76%' }
+        { label: 'Omega-3 (ALA)', amount: '2.4g', dv: '150%' },
+        { label: 'Calcium', amount: '160mg', dv: '16%' },
+        { label: 'Vitamin C', amount: '65mg', dv: '72%' },
+        { label: 'Protein bioaktiv', amount: '19g', dv: '38%' }
+      ]
+    },
+    {
+      id: 'mi-4',
+      name: 'Mediterranes Ofengemüse mit gebackenem Schafskäse (Feta) & Thymian',
+      category: 'Regeneratives Abendessen',
+      image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=80',
+      time: '20 Min.',
+      servings: 1,
+      calories: 395,
+      protein: 23,
+      carbs: 18,
+      fats: 26,
+      fiber: 6,
+      description: 'Warmer Genuss aus dem Backofen: Echter griechischer Schafskäse liefert leicht verdauliches A2-Protein.',
+      benefits: ['A2-Kasein oft besser verträglich als Kuhmilch', 'Viel Lycopin aus gebackenen Tomaten', 'Kein Aufwand – alles auf einem Blech'],
+      ingredients: [
+        '100g originaler Schafsmilch-Feta',
+        '1 Zucchini, 1 rote Zwiebel, Kirschtomaten und Champignons',
+        '1 EL Olivenöl extra vergine',
+        'Zweige frischer Thymian und Oregano',
+        'Prise Chiliflocken und Meersalz'
+      ],
+      instructions: [
+        'Gemüse grob schneiden und in einer Auflaufform verteilen.',
+        'Den Feta in die Mitte setzen, mit Olivenöl beträufeln und mit Kräutern bestreuen.',
+        'Bei 200°C Ober-/Unterhitze ca. 18–20 Min. backen, bis der Feta goldgelb schmilzt.',
+        'Warm servieren und genießen.'
+      ],
+      micronutrients: [
+        { label: 'Calcium', amount: '380mg', dv: '38%' },
+        { label: 'Zink', amount: '2.6mg', dv: '26%' },
+        { label: 'Lycopin', amount: '5.2mg', dv: 'Optimal' },
+        { label: 'Vitamin B2', amount: '0.4mg', dv: '28%' }
       ]
     }
   ]
 };
 
 export const MealPlanner: React.FC = () => {
-  const days = ['Lunes', 'Martes', 'Miércoles'];
-  const [selectedDay, setSelectedDay] = useState<string>('Lunes');
+  const days = ['Montag', 'Dienstag', 'Mittwoch'];
+  const [selectedDay, setSelectedDay] = useState<string>('Montag');
   const [activeRecipe, setActiveRecipe] = useState<RecipeData | null>(null);
 
-  const currentMeals = weeklyMealData[selectedDay] || weeklyMealData['Lunes'];
+  const currentMeals = weeklyMealData[selectedDay] || weeklyMealData['Montag'];
 
   // Calculate day total kcal and macros
   const dailyTotals = currentMeals.reduce(
@@ -451,17 +448,17 @@ export const MealPlanner: React.FC = () => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-brand-800 text-xs font-bold mb-3 border border-brand-200">
-            <Utensils className="w-3.5 h-3.5" />
-            <span>Planificación y Recetas Semanales</span>
+            <Utensils className="w-3.5 h-3.5 text-brand-600" />
+            <span>Praxisnahe Ernährungspläne & Rezepte</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight font-display mb-4">
-            Comida Real Mediterránea. <br />
+            Echte Vollwertküche. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 via-emerald-600 to-teal-600">
-              Sin Pasar Hambre ni Pesar Gramos
+              Ohne Hungern und ohne Gramm-Zählen
             </span>
           </h2>
           <p className="text-slate-600 text-base">
-            Ejemplo de cómo comemos en el método Punto Final: platos ricos, ingredientes de mercado local en Sevilla y equilibrio nutricional sin renunciar al sabor.
+            Ein Einblick in das Konzept des <strong>ErnährungsTreffs Lilienthal</strong>: Frische Zutaten, unkomplizierte Zubereitung und ernährungsphysiologische Balance, die sich spielend leicht in den Alltag integrieren lässt.
           </p>
         </div>
 
@@ -474,7 +471,7 @@ export const MealPlanner: React.FC = () => {
               <button
                 key={day}
                 onClick={() => setSelectedDay(day)}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap active:scale-95 ${
                   selectedDay === day
                     ? 'bg-brand-600 text-white shadow-md'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -486,16 +483,16 @@ export const MealPlanner: React.FC = () => {
           </div>
 
           {/* Daily Totals Bar */}
-          <div className="flex items-center gap-4 bg-emerald-50/80 px-4 py-2.5 rounded-2xl border border-emerald-200/80 text-xs w-full md:w-auto justify-between md:justify-start">
+          <div className="flex items-center gap-4 bg-emerald-50/90 px-4 py-2.5 rounded-2xl border border-emerald-200/80 text-xs w-full md:w-auto justify-between md:justify-start">
             <div className="flex items-center gap-1.5 font-bold text-slate-800">
               <Flame className="w-4 h-4 text-emerald-600" />
-              <span>Total Día:</span>
+              <span>Tagesbilanz:</span>
               <span className="font-black text-brand-800 text-sm font-display">{dailyTotals.calories} kcal</span>
             </div>
             <div className="flex items-center gap-3 text-slate-600 font-semibold text-[11px]">
-              <span>Prot: <strong className="text-slate-900">{dailyTotals.protein}g</strong></span>
-              <span>Grasas: <strong className="text-slate-900">{dailyTotals.fats}g</strong></span>
-              <span>Hidratos: <strong className="text-slate-900">{dailyTotals.carbs}g</strong></span>
+              <span>Protein: <strong className="text-slate-900">{dailyTotals.protein}g</strong></span>
+              <span>Fette: <strong className="text-slate-900">{dailyTotals.fats}g</strong></span>
+              <span>Kohlenhydrate: <strong className="text-slate-900">{dailyTotals.carbs}g</strong></span>
             </div>
           </div>
 
@@ -504,8 +501,8 @@ export const MealPlanner: React.FC = () => {
         {/* Meals Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {currentMeals.map((meal) => (
-            <Card3DTilt key={meal.id} maxTilt={8} className="h-full">
-              <div className="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-soft hover:shadow-float transition-all duration-300 flex flex-col h-full group">
+            <Card3DTilt key={meal.id} maxTilt={6} className="h-full">
+              <div className="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-soft hover:shadow-float transition-all duration-300 flex flex-col h-full group hover-lift">
                 
                 {/* Image */}
                 <div className="relative h-44 w-full overflow-hidden bg-slate-100">
@@ -540,25 +537,25 @@ export const MealPlanner: React.FC = () => {
                   <div>
                     <div className="grid grid-cols-3 gap-1.5 py-2.5 px-3 rounded-xl bg-slate-50 border border-slate-100 text-center mb-4">
                       <div>
-                        <span className="text-[10px] text-slate-500 block font-medium">Kcal</span>
+                        <span className="text-[10px] text-slate-500 block font-medium">Kalorien</span>
                         <span className="text-xs font-black text-slate-900 font-display">{meal.calories}</span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-slate-500 block font-medium">Proteína</span>
+                        <span className="text-[10px] text-slate-500 block font-medium">Protein</span>
                         <span className="text-xs font-black text-brand-700 font-display">{meal.protein}g</span>
                       </div>
                       <div>
-                        <span className="text-[10px] text-slate-500 block font-medium">Grasas</span>
+                        <span className="text-[10px] text-slate-500 block font-medium">Fett</span>
                         <span className="text-xs font-black text-amber-700 font-display">{meal.fats}g</span>
                       </div>
                     </div>
 
                     <button
                       onClick={() => setActiveRecipe(meal)}
-                      className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-800 text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+                      className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-brand-50 text-slate-700 hover:text-brand-800 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 active:scale-98"
                     >
                       <BookOpen className="w-3.5 h-3.5" />
-                      <span>Ver Ingredientes y Paso a Paso</span>
+                      <span>Zutaten & Zubereitung ansehen</span>
                     </button>
                   </div>
 

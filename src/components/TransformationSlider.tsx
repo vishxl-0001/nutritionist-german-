@@ -2,15 +2,9 @@ import React, { useState } from 'react';
 import { 
   Award, 
   ArrowLeftRight, 
-  TrendingDown, 
-  CheckCircle, 
   ChevronRight, 
-  Activity, 
-  Sparkles,
-  Quote,
-  Star
+  Quote
 } from 'lucide-react';
-import { Card3DTilt } from './Card3DTilt';
 
 interface CaseStudy {
   id: string;
@@ -28,55 +22,55 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    id: 'rocio',
-    name: 'Rocío G.',
-    age: 36,
-    location: 'Sevilla (Los Bermejales)',
-    condition: 'Pérdida de Peso y Fin del Efecto Rebote',
-    duration: '14 Semanas',
+    id: 'sabine',
+    name: 'Sabine K.',
+    age: 38,
+    location: 'Lilienthal',
+    condition: 'Dauerhafter Gewichtsverlust & Ende des Jo-Jo-Effekts',
+    duration: '14 Wochen',
     beforeImg: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&auto=format&fit=crop&q=80',
     afterImg: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80',
     metrics: [
-      { label: 'Peso Corporal', before: '82.5 kg', after: '67.2 kg', delta: '-15.3 kg' },
-      { label: 'Insulina en Ayunas', before: '17.8 µUI/mL', after: '5.4 µUI/mL', delta: '-70%' },
-      { label: 'Perímetro Cintura', before: '94 cm', after: '76 cm', delta: '-18 cm' },
+      { label: 'Körpergewicht', before: '83.5 kg', after: '68.2 kg', delta: '-15.3 kg' },
+      { label: 'Nüchtern-Insulin', before: '17.5 µU/ml', after: '5.6 µU/ml', delta: '-68%' },
+      { label: 'Taillenumfang', before: '95 cm', after: '77 cm', delta: '-18 cm' },
     ],
-    quote: "Llevaba 7 años encadenando dietas donde pasaba hambre, bajaba 4 kilos y subía 8. En Punto Final aprendí a comer de todo, a ir a comidas familiares sin ansiedad y a quererme. Ha sido un cambio para siempre.",
-    protocol: 'Reeducación alimentaria mediterránea, platos completos saciantes y gestión del hambre emocional.'
+    quote: "Ich hatte jahrelang eine Diät nach der anderen gemacht – immer mit Verzicht und anschließendem Jo-Jo-Effekt. Im ErnährungsTreff Lilienthal habe ich endlich gelernt, satt zu werden, ohne Verbote zu leben und meinen Körper zu verstehen. Die beste Entscheidung meines Lebens!",
+    protocol: 'Alltagstaugliche Vollwerternährung, sättigende Proteinkombinationen & achtsame Regulierung von Heißhunger.'
   },
   {
-    id: 'manuel',
-    name: 'Manuel R.',
-    age: 45,
-    location: 'Sevilla',
-    condition: 'Triglicéridos Altos y Grasa Visceral',
-    duration: '12 Semanas',
+    id: 'michael',
+    name: 'Michael B.',
+    age: 46,
+    location: 'Lilienthal / Raum Bremen',
+    condition: 'Senkung von Blutfettwerten & viszeralem Bauchfett',
+    duration: '12 Wochen',
     beforeImg: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&auto=format&fit=crop&q=80',
     afterImg: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop&q=80',
     metrics: [
-      { label: 'Grasa Visceral', before: 'Nivel 13', after: 'Nivel 7', delta: '-46%' },
-      { label: 'Triglicéridos', before: '242 mg/dL', after: '94 mg/dL', delta: '-61%' },
-      { label: 'Tensión Arterial', before: '142/92', after: '118/76', delta: 'Normal' },
+      { label: 'Viszeralfett-Level', before: 'Stufe 13', after: 'Stufe 7', delta: '-46%' },
+      { label: 'Triglyceride', before: '238 mg/dl', after: '96 mg/dl', delta: '-60%' },
+      { label: 'Blutdruck', before: '142/92', after: '118/76', delta: 'Normal' },
     ],
-    quote: "Mi médico de cabecera me felicitó al ver la última analítica. No sólo he bajado dos tallas de pantalón, sino que he dejado de tener pesadez después de comer y tengo energía para jugar con mis hijos.",
-    protocol: 'Sustitución de ultraprocesados por comida real, aumento de pescados azules y pautas de tapeo saludable.'
+    quote: "Mein Hausarzt war bei der letzten Blutkontrolle begeistert. Ich habe nicht nur zwei Hosengrößen weniger, sondern fühle mich nach dem Essen nicht mehr träge und habe wieder volle Energie für Sport und Familie.",
+    protocol: 'Austausch von hochverarbeiteten Lebensmitteln gegen frische Vollwertkost, gezielte Omega-3-Strategie und strukturierter Mahlzeitenrhythmus.'
   },
   {
-    id: 'carmen',
-    name: 'Carmen M.',
-    age: 29,
-    location: 'Sevilla (Consulta Online)',
-    condition: 'Hinchazón Abdominal Diaria y SOP',
-    duration: '10 Semanas',
+    id: 'sandra',
+    name: 'Sandra M.',
+    age: 31,
+    location: 'Lilienthal',
+    condition: 'Chronischer Blähbauch, Reizdarm & hormonelle Dysbalance',
+    duration: '10 Wochen',
     beforeImg: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&auto=format&fit=crop&q=80',
     afterImg: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=80',
     metrics: [
-      { label: 'Nivel de Hinchazón', before: '9 / 10', after: '1 / 10', delta: 'Resuelto' },
-      { label: 'Ciclos Menstruales', before: '50-65 días', after: '29 días', delta: 'Regular' },
-      { label: 'Energía y Digestión', before: 'Cansancio', after: 'Vitalidad', delta: '+100%' },
+      { label: 'Bauchbeschwerden', before: '9 / 10', after: '1 / 10', delta: 'Gelöst' },
+      { label: 'Zykluslänge', before: '55-65 Tage', after: '29 Tage', delta: 'Regulär' },
+      { label: 'Energie & Wohlbefinden', before: 'Erschöpft', after: 'Vital', delta: '+100%' },
     ],
-    quote: "Tenía una barriga tan hinchada al final del día que tenía que desabrocharme los botones. Con Punto Final identificamos qué fermentaba mal y regulamos mi ciclo menstrual. ¡Por fin vivo tranquila!",
-    protocol: 'Protocolo digestivo de reintroducción guiada, pauta antiinflamatoria hormonal y mioinositol.'
+    quote: "Mein Bauch war abends so aufgebläht, dass ich keine normale Hose mehr tragen konnte. Durch die gezielte Darmanalyse und schonende Ernährungsumstellung im ErnährungsTreff habe ich endlich wieder ein leichtes, freies Bauchgefühl!",
+    protocol: 'Gezieltes FODMAP-Stufenkonzept, Darmschleimhaut-Regeneration & mikrobiomfreundliche Ballaststoffzufuhr.'
   }
 ];
 
@@ -93,17 +87,17 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-brand-800 text-xs font-bold mb-3 border border-brand-200">
-            <Award className="w-3.5 h-3.5" />
-            <span>Casos Reales de Pacientes</span>
+            <Award className="w-3.5 h-3.5 text-brand-600" />
+            <span>Erfahrungsberichte aus der Praxis</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight font-display mb-4">
-            Personas Reales. <br />
+            Echte Klienten. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 via-emerald-600 to-teal-600">
-              Resultados Definitivos Sin Rebote
+              Dauerhafte Ergebnisse ohne Jo-Jo-Effekt
             </span>
           </h2>
           <p className="text-slate-600 text-base">
-            No nos conformamos con números en la báscula: medimos salud metabólica, analíticas clínicas, composición corporal y cómo te sientes en tu día a día.
+            Wir messen Erfolg nicht allein in Kilogramm auf der Waage, sondern an Laborwerten, Vitalität, Körperzusammensetzung und wie frei und wohl Sie sich in Ihrem Körper fühlen.
           </p>
         </div>
 
@@ -116,7 +110,7 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
                 setActiveStudyIndex(idx);
                 setSliderPos(50);
               }}
-              className={`px-4 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${
+              className={`px-4 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap active:scale-95 ${
                 activeStudyIndex === idx
                   ? 'bg-brand-600 text-white shadow-md'
                   : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
@@ -138,7 +132,7 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
               {/* After Image (Full background) */}
               <img
                 src={current.afterImg}
-                alt="Después de la transformación"
+                alt="Nach der Betreuung im ErnährungsTreff"
                 className="absolute inset-0 w-full h-full object-cover"
               />
 
@@ -149,7 +143,7 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
               >
                 <img
                   src={current.beforeImg}
-                  alt="Antes del tratamiento"
+                  alt="Vor der Betreuung"
                   className="absolute inset-0 w-full h-full object-cover max-w-none"
                   style={{ width: '100%', height: '100%', objectPosition: 'left center' }}
                 />
@@ -157,7 +151,7 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
 
               {/* Divider Line */}
               <div
-                className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize flex items-center justify-center"
+                className="absolute top-0 bottom-0 w-1 bg-white shadow-lg cursor-ew-resize flex items-center justify-center pointer-events-none"
                 style={{ left: `${sliderPos}%` }}
               >
                 <div className="w-8 h-8 rounded-full bg-white text-slate-900 shadow-xl flex items-center justify-center -ml-3.5 border border-slate-200">
@@ -173,20 +167,20 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
                 value={sliderPos}
                 onChange={(e) => setSliderPos(Number(e.target.value))}
                 className="absolute inset-0 opacity-0 cursor-ew-resize w-full h-full z-30"
-                aria-label="Deslizar para comparar antes y después"
+                aria-label="Schieberegler zum Vergleichen von Vorher und Nachher"
               />
 
               {/* Badges */}
               <div className="absolute top-3 left-3 bg-slate-950/70 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider">
-                Antes
+                Vorher
               </div>
               <div className="absolute top-3 right-3 bg-brand-600/90 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider">
-                Después
+                Nachher
               </div>
             </div>
 
             <p className="text-xs text-slate-500 font-semibold mt-3 text-center">
-              ↔ Desliza la barra para ver la transformación completa
+              ↔ Regler mit Maus oder Finger ziehen für den direkten Vergleich
             </p>
 
           </div>
@@ -202,7 +196,7 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
               </div>
 
               <h3 className="text-2xl font-black text-slate-900 font-display mb-3">
-                {current.name}, {current.age} años
+                {current.name}, {current.age} Jahre
               </h3>
 
               {/* Quote */}
@@ -216,7 +210,7 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
               {/* Metrics Grid */}
               <div className="grid grid-cols-3 gap-2.5 mb-6">
                 {current.metrics.map((m, idx) => (
-                  <div key={idx} className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                  <div key={idx} className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover-lift">
                     <span className="text-[10px] font-bold text-slate-500 uppercase block mb-0.5">
                       {m.label}
                     </span>
@@ -226,7 +220,7 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
                     <div className="text-sm font-black text-slate-900 font-display">
                       {m.after}
                     </div>
-                    <span className="inline-block mt-1 text-[10px] font-black text-emerald-700 bg-emerald-100 px-1.5 py-0.2 rounded">
+                    <span className="inline-block mt-1 text-[10px] font-black text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded">
                       {m.delta}
                     </span>
                   </div>
@@ -234,8 +228,8 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
               </div>
 
               {/* Clinical Protocol */}
-              <div className="text-xs text-slate-600 mb-6 bg-white p-3 rounded-xl border border-slate-200">
-                <span className="font-bold text-slate-900 block mb-0.5">Pauta aplicada en consulta:</span>
+              <div className="text-xs text-slate-600 mb-6 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <span className="font-bold text-slate-900 block mb-0.5">Angewandtes Konzept:</span>
                 <p>{current.protocol}</p>
               </div>
 
@@ -243,9 +237,9 @@ export const TransformationSlider: React.FC<{ onOpenBooking: () => void }> = ({ 
 
             <button
               onClick={onOpenBooking}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm active:scale-98"
             >
-              <span>Quiero Conseguir Resultados Como Este</span>
+              <span>Ähnliche Ergebnisse erreichen – Ersttermin anfragen</span>
               <ChevronRight className="w-4 h-4 text-emerald-400" />
             </button>
 

@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import { 
-  HeartPulse, 
-  Mail, 
   MapPin, 
   Phone, 
   ShieldCheck, 
-  Globe, 
-  Share2, 
   MessageCircle, 
   Check, 
   ArrowRight,
   Clock,
-  Star,
-  ExternalLink
+  Star
 } from 'lucide-react';
 
 export const Footer: React.FC<{ onNavigate: (id: string) => void }> = ({ onNavigate }) => {
@@ -35,35 +30,35 @@ export const Footer: React.FC<{ onNavigate: (id: string) => void }> = ({ onNavig
         <div className="bg-gradient-to-r from-emerald-950 via-slate-800 to-emerald-900 rounded-3xl p-8 sm:p-12 mb-16 border border-emerald-500/25 shadow-xl relative overflow-hidden">
           <div className="relative z-10 max-w-2xl">
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-900/60 px-3 py-1 rounded-full border border-emerald-700/50 inline-block mb-3">
-              Newsletter Semanal Gratuita
+              Kostenlose Ernährungstipps & Rezeptideen
             </span>
             <h3 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white mb-3">
-              Recibe Menús de Temporada, Recetas Reales y Consejos Sin Filtros
+              Saisonale Menüs, alltagstaugliche Vollwertrezepte & fundiertes Ernährungswissen
             </h3>
             <p className="text-slate-300 text-xs sm:text-sm mb-6 leading-relaxed">
-              Únete a nuestra comunidad de pacientes y personas interesadas en reeducación nutricional. Sin spam ni dietas milagro: sólo ciencia, salud digestiva y platos ricos.
+              Tragen Sie sich unverbindlich ein für praktische Impulse zu Darmgesundheit, Stoffwechselaktivierung und Wohlfühlgewicht – 100% spamfrei.
             </p>
 
             {subscribed ? (
               <div className="flex items-center gap-2 text-emerald-300 font-bold text-sm bg-emerald-900/40 p-3.5 rounded-xl border border-emerald-700/50">
                 <Check className="w-5 h-5" />
-                <span>¡Te has suscrito con éxito! Revisa tu bandeja de entrada para recibir la Guía de Compras Saludables.</span>
+                <span>Vielen Dank für Ihre Anmeldung! Sie erhalten in Kürze unseren praktischen Einkaufsleitfaden.</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2.5 max-w-md">
                 <input
                   type="email"
                   required
-                  placeholder="Escribe tu correo electrónico"
+                  placeholder="Ihre E-Mail-Adresse eingeben"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="px-4 py-3 rounded-xl bg-slate-800/90 border border-slate-700 text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-brand-500 flex-1"
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-emerald-500 hover:from-brand-500 hover:to-emerald-400 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-emerald-500 hover:from-brand-500 hover:to-emerald-400 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 whitespace-nowrap active:scale-98"
                 >
-                  <span>Suscribirme Gratis</span>
+                  <span>Kostenlos abonnieren</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </form>
@@ -77,15 +72,15 @@ export const Footer: React.FC<{ onNavigate: (id: string) => void }> = ({ onNavig
           {/* Brand Info (2 cols) */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white font-black text-sm">
-                PF
+              <div className="w-10 h-10 rounded-2xl bg-brand-600 flex items-center justify-center text-white font-black text-sm">
+                ETL
               </div>
               <span className="text-2xl font-black font-display tracking-tight text-white">
-                PUNTOFINAL<span className="text-brand-400">.</span>
+                ErnährungsTreff<span className="text-brand-400"> Lilienthal</span>
               </span>
             </div>
             <p className="text-slate-400 leading-relaxed max-w-sm mb-6 text-xs">
-              Consulta de Nutrición y Dietética en Sevilla. Reeducación alimentaria, psiconutrición y abordaje de la salud digestiva y hormonal. Ponemos punto final a las dietas milagro para siempre.
+              Praxis für individuelle Ernährungsberatung & Ernährungstherapie in Lilienthal (bei Bremen). Schluss mit quälenden Diäten und Jo-Jo-Effekt – für dauerhafte Gesundheit, Vitalität und Leichtigkeit.
             </p>
 
             {/* Google Rating mini banner */}
@@ -95,132 +90,126 @@ export const Footer: React.FC<{ onNavigate: (id: string) => void }> = ({ onNavig
                   <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
                 ))}
               </div>
-              <span className="text-xs font-bold text-slate-200">5.0 en Google</span>
-              <span className="text-slate-400 text-[11px]">• +203 reseñas</span>
+              <span className="text-xs font-bold text-slate-200">5.0 auf Google Maps</span>
+              <span className="text-slate-400 text-[11px]">• Verifizierte Praxis</span>
             </div>
 
             <div className="flex items-center gap-3 text-slate-400">
               <a
-                href="https://wa.me/34682602256"
+                href="https://wa.me/4917630632723?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Ern%C3%A4hrungsberatung%20im%20Ern%C3%A4hrungsTreff%20Lilienthal."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-colors"
-                title="WhatsApp Directo"
+                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-colors"
+                title="WhatsApp Kontakt"
               >
                 <MessageCircle className="w-4 h-4" />
               </a>
               <a
-                href="tel:+34682602256"
-                className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center transition-colors"
-                title="Llamar por teléfono"
+                href="tel:+4917630632723"
+                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center transition-colors"
+                title="Praxistelefon anrufen"
               >
                 <Phone className="w-4 h-4" />
               </a>
               <a
-                href="https://maps.google.com/?q=Avenida+de+Finlandia+1+Bermejales+Center+Sevilla"
+                href="https://www.google.com/maps/search/?api=1&query=Ern%C3%A4hrungsTreff+Lilienthal+Zur+alten+W%C3%B6rpe+8+28865+Lilienthal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center transition-colors"
-                title="Ver en Google Maps"
+                className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center transition-colors"
+                title="Auf Google Maps ansehen"
               >
                 <MapPin className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Contacto & Ubicación Sevilla */}
+          {/* Kontakt & Standort Lilienthal */}
           <div>
-            <h4 className="text-white font-extrabold uppercase tracking-wider text-xs mb-4">Dónde Estamos</h4>
+            <h4 className="text-white font-extrabold uppercase tracking-wider text-xs mb-4">Praxisstandort</h4>
             <ul className="space-y-3 text-slate-400 text-xs">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
                 <span>
-                  Av. de Finlandia, 1 <br />
-                  Edif. Bermejales Center, Mód. 20 <br />
-                  41012 Sevilla, España
+                  ErnährungsTreff Lilienthal <br />
+                  Zur alten Wörpe 8 <br />
+                  28865 Lilienthal, Deutschland
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <a href="tel:955641335" className="hover:text-white transition-colors">
-                  Fijo: 955 641 335
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <a href="tel:682602256" className="hover:text-white transition-colors">
-                  Móvil: 682 602 256
+                <a href="tel:+4917630632723" className="hover:text-white transition-colors">
+                  Telefon: +49 176 30632723
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                 <a 
-                  href="https://wa.me/34682602256?text=Hola%20Roc%C3%ADo,%20me%20gustar%C3%ADa%20pedir%20cita%20en%20Punto%20Final" 
+                  href="https://wa.me/4917630632723?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Ern%C3%A4hrungsberatung%20im%20Ern%C3%A4hrungsTreff%20Lilienthal." 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-emerald-300 transition-colors font-bold text-emerald-400"
                 >
-                  WhatsApp Citas (682 602 256)
+                  WhatsApp: +49 176 30632723
                 </a>
               </li>
               <li className="flex items-start gap-2 pt-1 border-t border-slate-800">
                 <Clock className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
                 <span>
-                  Lunes a Viernes: <br />
-                  <strong>9:00 a 21:00</strong> <br />
-                  <span className="text-[11px] text-slate-500">Sábados y Domingos: Cerrado</span>
+                  Sprechzeiten: <br />
+                  <strong>Mo – Fr nach Vereinbarung</strong> <br />
+                  <span className="text-[11px] text-slate-500">Auch Spättermine ab 16:00 Uhr möglich</span>
                 </span>
               </li>
             </ul>
           </div>
 
-          {/* Enlaces Rápidos */}
+          {/* Schnelle Navigation */}
           <div>
-            <h4 className="text-white font-extrabold uppercase tracking-wider text-xs mb-4">Navegación</h4>
+            <h4 className="text-white font-extrabold uppercase tracking-wider text-xs mb-4">Themen & Tools</h4>
             <ul className="space-y-2.5 text-slate-400 text-xs">
               <li>
                 <button onClick={() => onNavigate('calculator')} className="hover:text-emerald-400 transition-colors">
-                  Calculadora de Calorías y Macros
+                  Kalorien- & Makrorechner
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('meal-planner')} className="hover:text-emerald-400 transition-colors">
-                  Menús Semanales Mediterráneos
+                  Wochenpläne & Vollwert-Rezepte
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('quiz')} className="hover:text-emerald-400 transition-colors">
-                  Test de Diagnóstico de Hábitos
+                  60-Sekunden Stoffwechsel-Test
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('transformations')} className="hover:text-emerald-400 transition-colors">
-                  Casos de Éxito en Sevilla
+                  Erfahrungsberichte aus der Praxis
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('programs')} className="hover:text-emerald-400 transition-colors">
-                  Tarifas y Programas 12 Semanas
+                  Beratungsangebote & Preise
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('about')} className="hover:text-emerald-400 transition-colors">
-                  Mi Filosofía y Método
+                  Über die Praxis & Konzept
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Especialidades Clínicas */}
+          {/* Schwerpunkte */}
           <div>
-            <h4 className="text-white font-extrabold uppercase tracking-wider text-xs mb-4">Especialidades</h4>
+            <h4 className="text-white font-extrabold uppercase tracking-wider text-xs mb-4">Schwerpunkte</h4>
             <ul className="space-y-2.5 text-slate-400 text-xs">
-              <li>Pérdida de Grasa sin Efecto Rebote</li>
-              <li>Psiconutrición y Ansiedad por la Comida</li>
-              <li>Salud Digestiva: Hinchazón, Gases y SIBO</li>
-              <li>Salud Hormonal Femenina: SOP y Tiroides</li>
-              <li>Composición Corporal por Bioimpedancia</li>
-              <li>Videoconsulta Online en Toda España</li>
+              <li>Nachhaltiger Fettabbau ohne Jo-Jo-Effekt</li>
+              <li>Darmgesundheit & Reizdarmtherapie</li>
+              <li>Ernährungspsychologie & Heißhungerabbau</li>
+              <li>Hormone, Wechseljahre & Schilddrüse</li>
+              <li>Krankenkassen-Bezuschussung (§ 20/43 SGB V)</li>
+              <li>Online-Beratung für die Region Bremen & bundesweit</li>
             </ul>
           </div>
 
@@ -230,15 +219,15 @@ export const Footer: React.FC<{ onNavigate: (id: string) => void }> = ({ onNavig
         <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-brand-500" />
-            <span>© {new Date().getFullYear()} PUNTOFINAL. Nutrición Sevilla • Todos los derechos reservados.</span>
+            <span>© {new Date().getFullYear()} ErnährungsTreff Lilienthal • Alle Rechte vorbehalten.</span>
           </div>
 
           <div className="flex items-center gap-4 text-[11px]">
-            <a href="#" className="hover:text-white transition-colors">Aviso Legal</a>
+            <a href="#" className="hover:text-white transition-colors">Impressum</a>
             <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">Política de Privacidad (RGPD)</a>
+            <a href="#" className="hover:text-white transition-colors">Datenschutz (DSGVO)</a>
             <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">Política de Cookies</a>
+            <a href="#" className="hover:text-white transition-colors">Cookie-Einstellungen</a>
           </div>
         </div>
 

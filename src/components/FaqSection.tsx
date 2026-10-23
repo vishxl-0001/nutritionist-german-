@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HelpCircle, ChevronDown, Sparkles } from 'lucide-react';
+import { HelpCircle, ChevronDown } from 'lucide-react';
 
 interface FaqItem {
   question: string;
@@ -9,44 +9,44 @@ interface FaqItem {
 
 const faqs: FaqItem[] = [
   {
-    category: 'Método y Comida',
-    question: '¿Tendré que pesar la comida o contar calorías toda la vida?',
-    answer: 'Rotundamente no. En Punto Final nuestro propósito es la reeducación alimentaria. Al principio utilizamos referencias visuales sencillas y prácticas (como el método del plato y las porciones con la mano), pero jamás te encadenaremos a una báscula de cocina. Te enseñamos a conectar con tus señales naturales de hambre y saciedad.'
+    category: 'Ernährung & Alltag',
+    question: 'Muss ich mein Essen abwiegen oder mein Leben lang Kalorien zählen?',
+    answer: 'Ganz klar: Nein. Unser Ziel im ErnährungsTreff Lilienthal ist eine intuitive und alltagstaugliche Ernährungsweise. Wir nutzen einfache visuelle Orientierungshilfen (wie das Tellermodell und Handportionen), damit Sie ein natürliches Gefühl für Portionsgrößen entwickeln – ganz ohne Küchenwaage oder Tracking-Stress.'
   },
   {
-    category: 'Ubicación y Citas',
-    question: '¿Dónde está la consulta en Sevilla y cómo funciona la modalidad online?',
-    answer: 'Mi consulta presencial está ubicada en Sevilla, en la Avenida de Finlandia 1, Edificio Bermejales Center, Módulo 20 (41012). Cuenta con fácil acceso y aparcamiento. Si vives fuera de Sevilla o tus horarios no te permiten desplazarte, te atiendo mediante videoconsulta online con el mismo protocolo, cercanía y seguimiento continuo.'
+    category: 'Standort & Termine',
+    question: 'Wo genau befindet sich die Praxis und gibt es auch Online-Beratung?',
+    answer: 'Unsere Praxis befindet sich in Lilienthal (bei Bremen) unter der Adresse Zur alten Wörpe 8, 28865 Lilienthal. Es stehen gute Park- und Anfahrtsmöglichkeiten zur Verfügung. Sollten Sie von weiter her kommen oder beruflich eingespannt sein, bieten wir alle Beratungstermine auch flexibel per Video-Sprechstunde an.'
   },
   {
-    category: 'Seguros y Tarifas',
-    question: '¿Aceptas seguros médicos privados (Adeslas, Sanitas, Asisa, etc.)?',
-    answer: 'Ejerzo en consulta privada e independiente para poder dedicarte entre 45 y 70 minutos por sesión sin prisas. Como Dietista-Nutricionista Colegiada, emito factura sanitaria oficial válida para deducir o presentar ante pólizas de seguro con opción de reembolso de gastos médicos (donde te reintegran habitualmente entre el 80% y el 100%).'
+    category: 'Krankenkassen & Kosten',
+    question: 'Bezuschussen gesetzliche oder private Krankenkassen die Beratung?',
+    answer: 'Ja! Als qualifizierte Ernährungsfachkraft stellen wir Ihnen nach Abschluss die Unterlagen für die Krankenkasse (§ 20 / § 43 SGB V) aus. Die meisten gesetzlichen Krankenkassen (wie Techniker, Barmer, AOK, DAK, IKK etc.) sowie private Beihilfen erstatten zwischen 70% und 100% der Kosten.'
   },
   {
-    category: 'Método y Comida',
-    question: '¿Me vas a mandar pastillas, batidos o productos para adelgazar?',
-    answer: 'Nunca. Mi lema es poner PUNTO FINAL a las dietas milagro. No vendo batidos sustitutivos, sobres ni pastillas quemagrasas. Todo tu plan se elabora con comida real de mercado, frutas, verduras, legumbres, pescados, carnes y aceite de oliva virgen extra.'
+    category: 'Ernährung & Alltag',
+    question: 'Werden mir Shakes, Diätpillen oder Abnehmprodukte verkauft?',
+    answer: 'Niemals. Im ErnährungsTreff Lilienthal setzen wir zu 100% auf vollwertige, echte Lebensmittel aus dem Supermarkt oder vom regionalen Wochenmarkt. Wir verkaufen keine Pülverchen, Fettblocker oder Ersatzmahlzeiten.'
   },
   {
-    category: 'Acompañamiento',
-    question: '¿Cómo funciona la resolución de dudas por WhatsApp entre consultas?',
-    answer: 'En mis planes de acompañamiento cuentas con un canal directo de WhatsApp conmigo. Si estás en el supermercado y dudas con una etiqueta, o si vas a comer fuera el fin de semana y no sabes qué pedir de la carta, te asesoro para que aprendas a tomar las mejores decisiones en tiempo real.'
+    category: 'Begleitung & Support',
+    question: 'Wie funktioniert die persönliche WhatsApp-Begleitung zwischen den Terminen?',
+    answer: 'In unseren mehrwöchigen Beratungspaketen haben Sie einen direkten WhatsApp-Kanal zu uns. Stehen Sie im Supermarkt und sind bei einer Zutatenliste unsicher, oder sind Sie am Wochenende zum Essen eingeladen? Sie können jederzeit unkompliziert Fragen stellen und erhalten zeitnah Orientierung.'
   },
   {
-    category: 'Salud Digestiva',
-    question: 'Tengo hinchazón continua, gases o sospecha de SIBO. ¿Cómo me puedes ayudar?',
-    answer: 'Gran parte de mis pacientes acuden por problemas digestivos. Realizo una valoración profunda de síntomas, reviso analíticas o pruebas de aliento, y aplico protocolos por fases (retirada temporal de fermentables, reparación de mucosa intestinal y reintroducción paulatina) para eliminar la distensión abdominal de raíz.'
+    category: 'Darm & Gesundheit',
+    question: 'Ich leide unter ständigem Blähbauch, Völlegefühl oder Reizdarmsymptomen – wie wird mir geholfen?',
+    answer: 'Darmgesundheit ist eines unserer Kerngebiete. Wir führen eine ausführliche Symptomanalyse durch, prüfen Ernährungsprotokolle und bestehende Befunde und etablieren ein schonendes Stufenkonzept (FODMAP-orientiert, Schleimhautberuhigung und gezielte Mikrobiom-Stärkung), um die Beschwerden an der Wurzel zu packen.'
   }
 ];
 
 export const FaqSection: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Alle');
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const categories = ['Todas', 'Método y Comida', 'Ubicación y Citas', 'Acompañamiento', 'Salud Digestiva', 'Seguros y Tarifas'];
+  const categories = ['Alle', 'Ernährung & Alltag', 'Standort & Termine', 'Begleitung & Support', 'Darm & Gesundheit', 'Krankenkassen & Kosten'];
 
-  const filtered = selectedCategory === 'Todas' 
+  const filtered = selectedCategory === 'Alle' 
     ? faqs 
     : faqs.filter(f => f.category === selectedCategory);
 
@@ -61,14 +61,14 @@ export const FaqSection: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-brand-800 text-xs font-bold mb-3 border border-brand-200">
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Respuestas Claras</span>
+            <HelpCircle className="w-3.5 h-3.5 text-brand-600" />
+            <span>Häufige Fragen & Antworten</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display mb-3">
-            Preguntas Frecuentes
+            Fragen & Antworten (FAQ)
           </h2>
           <p className="text-slate-600 text-sm sm:text-base">
-            Todo lo que necesitas saber antes de dar el paso y empezar tu camino en Punto Final.
+            Wissenswertes rund um Ihren Termin, das Praxiskonzept und die Krankenkassen-Bezuschussung im ErnährungsTreff Lilienthal.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ export const FaqSection: React.FC = () => {
                 setSelectedCategory(cat);
                 setOpenIndex(0);
               }}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap active:scale-95 ${
                 selectedCategory === cat
                   ? 'bg-brand-600 text-white shadow-xs'
                   : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
@@ -99,7 +99,7 @@ export const FaqSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs transition-all"
+                className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-2xs transition-all hover-lift"
               >
                 <button
                   onClick={() => toggle(idx)}

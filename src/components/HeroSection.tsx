@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
-  Sparkles, 
   ArrowRight, 
   CheckCircle2, 
-  Activity, 
-  Flame, 
-  Apple, 
-  ShieldCheck, 
   Star, 
-  Zap, 
-  TrendingDown,
-  MessageCircle,
-  MapPin,
-  Heart,
-  Phone,
-  Users
+  MessageCircle, 
+  MapPin, 
+  Heart, 
+  Phone, 
+  Users,
+  Clock,
+  Sparkles,
+  ExternalLink,
+  ShieldCheck,
+  Compass
 } from 'lucide-react';
 import { Card3DTilt } from './Card3DTilt';
+import { Hero3DCanvas } from './Hero3DCanvas';
 
 interface HeroSectionProps {
   onOpenBooking: () => void;
@@ -24,11 +23,13 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onNavigate }) => {
+  const [activeHeroTab, setActiveHeroTab] = useState<'interactive3d' | 'praxis'>('praxis');
+
   return (
     <section id="hero" className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden mesh-gradient-bg">
       {/* Background organic blur blobs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-200/30 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
-      <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-200/35 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
+      <div className="absolute top-1/3 right-10 w-[420px] h-[420px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
@@ -36,54 +37,56 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onNavig
           {/* Left Column: Copy, Badges, and Action Triggers */}
           <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left z-10">
             {/* Top Verified Clinic Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-emerald-200/80 shadow-xs mb-5 backdrop-blur-md">
-              <span className="flex h-2 w-2 rounded-full bg-brand-500 animate-ping" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-emerald-200/90 shadow-xs mb-5 backdrop-blur-md">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-brand-500 animate-ping" />
               <span className="text-xs font-bold text-slate-800 tracking-wide flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-brand-600" />
-                <span>Sevilla (Los Bermejales)</span>
+                <MapPin className="w-3.5 h-3.5 text-brand-600 flex-shrink-0" />
+                <span>Zur alten Wörpe 8, 28865 Lilienthal</span>
                 <span className="text-slate-300">•</span>
-                <span className="text-brand-800 font-extrabold">Rocío Jiménez López de Lemus</span>
+                <span className="text-brand-800 font-extrabold">ErnährungsTreff</span>
               </span>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-[1.12] mb-4 font-display">
-              Pon <span className="text-brand-600 underline decoration-amber-400 decoration-wavy underline-offset-4">PUNTO FINAL</span> <br className="hidden sm:inline" />
-              a las dietas milagro.{' '}
+              Schluss mit Diätfrust und{' '}
+              <span className="text-brand-600 underline decoration-amber-400 decoration-wavy underline-offset-4">
+                Jo-Jo-Effekt.
+              </span>{' '}
               <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-brand-700 via-emerald-600 to-teal-600">
-                Nutrición a tu medida.
+                Ernährung, die zu Ihrem Leben passt.
               </span>
             </h1>
 
-            {/* Badge Charlas grupales & individual */}
+            {/* Badge Einzelberatung & Gruppenangebote */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold mb-4 shadow-2xs">
               <Users className="w-3.5 h-3.5 text-amber-600" />
-              <span>Consultas individuales y Charlas grupales para adelgazar</span>
+              <span>Individuelle Einzelberatung & inspirierende Gruppenangebote in Lilienthal</span>
             </div>
 
             {/* Subheading */}
             <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed mb-8">
-              Sin batidos sustitutivos, sin pastillas ni restricciones imposibles. Te enseño reeducación alimentaria, psiconutrición y salud digestiva y hormonal adaptada a tu vida real, tus gustos y tu ritmo.
+              Ohne Shakes, ohne Pillen und ohne quälende Verbote. Im <strong>ErnährungsTreff Lilienthal</strong> begleite ich Sie zu einer gesunden, genussvollen Ernährung – wissenschaftlich fundiert, praxistauglich und genau auf Ihren Stoffwechsel abgestimmt.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto mb-10">
               <button
                 onClick={onOpenBooking}
-                className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-gradient-to-r from-brand-700 via-brand-600 to-emerald-600 text-white font-bold text-base shadow-3d hover:shadow-float transition-all duration-300 hover:scale-102 flex items-center justify-center gap-3 group"
+                className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-gradient-to-r from-brand-700 via-brand-600 to-emerald-600 text-white font-bold text-base shadow-3d hover:shadow-float hover:-translate-y-0.5 transition-all duration-300 active:scale-98 flex items-center justify-center gap-3 group"
               >
-                <span>Pedir Primera Consulta</span>
+                <span>Ersttermin anfragen</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <a
-                href="https://wa.me/34682602256?text=Hola%20Roc%C3%ADo,%20he%20visto%20tu%20web%20de%20Punto%20Final%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n"
+                href="https://wa.me/4917630632723?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Ern%C3%A4hrungsberatung%20im%20Ern%C3%A4hrungsTreff%20Lilienthal."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/95 hover:bg-emerald-50/80 text-slate-800 hover:text-emerald-800 border border-slate-200/90 font-bold text-base shadow-xs hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/95 hover:bg-emerald-50/80 text-slate-800 hover:text-emerald-800 border border-slate-200/90 font-bold text-base shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 active:scale-98 flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>WhatsApp: 682 602 256</span>
+                <span>WhatsApp: +49 176 30632723</span>
               </a>
             </div>
 
@@ -102,75 +105,162 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onNavig
                     <span className="text-xs font-black text-slate-900 ml-1">5.0 / 5.0</span>
                   </div>
                   <p className="text-xs text-slate-600 font-semibold">
-                    Más de 203 reseñas reales en Google Maps
+                    Verifizierte 5-Sterne-Bewertung auf Google Maps
                   </p>
                 </div>
               </div>
 
-              {/* Tag consulta nutricional personalizada */}
-              <div className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-white/80 px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-xs">
+              {/* Tag Lilienthal & Region Bremen */}
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-white/85 px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-xs">
                 <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
-                <span>Consulta en Bermejales • Sevilla</span>
+                <span>Praxis in Lilienthal • Region Bremen & Online</span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Clean & Unobstructed Official Poster Presentation */}
+          {/* Right Column: Interactive Switcher between 3D Model & Practice Card */}
           <div className="lg:col-span-6 relative flex flex-col items-center">
             
-            {/* Poster Card with clean 3D perspective tilt (NO badges covering the text!) */}
-            <Card3DTilt maxTilt={6} className="w-full max-w-md sm:max-w-lg">
-              <div className="bg-white rounded-3xl border border-slate-200/90 p-4 sm:p-5 shadow-float hover:shadow-2xl transition-all duration-300 relative group overflow-hidden">
+            {/* View Switcher Tabs */}
+            <div className="flex items-center gap-2 mb-4 bg-white/80 p-1.5 rounded-2xl border border-slate-200/80 shadow-2xs backdrop-blur-md">
+              <button
+                onClick={() => setActiveHeroTab('praxis')}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  activeHeroTab === 'praxis'
+                    ? 'bg-slate-900 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                }`}
+              >
+                <MapPin className="w-3.5 h-3.5 text-brand-400" />
+                <span>Praxis & Standort</span>
+              </button>
+              <button
+                onClick={() => setActiveHeroTab('interactive3d')}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  activeHeroTab === 'interactive3d'
+                    ? 'bg-slate-900 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>Interaktives 3D-Bio-Modell</span>
+              </button>
+            </div>
+
+            {/* Main Interactive Showcase Card */}
+            <Card3DTilt maxTilt={5} className="w-full max-w-md sm:max-w-lg">
+              <div className="bg-white rounded-3xl border border-slate-200/90 p-5 sm:p-6 shadow-float hover:shadow-2xl transition-all duration-300 relative group overflow-hidden">
                 
-                {/* Subtle top indicator bar */}
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100 text-xs">
-                  <div className="flex items-center gap-2 font-bold text-slate-800">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Cartel Oficial • PUNTOFINAL.</span>
+                {activeHeroTab === 'praxis' ? (
+                  /* Practice Identity Card */
+                  <div className="space-y-4">
+                    {/* Top indicator bar */}
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-100 text-xs">
+                      <div className="flex items-center gap-2 font-bold text-slate-800">
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Offizielle Praxis • ErnährungsTreff</span>
+                      </div>
+                      <span className="text-[11px] font-extrabold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">
+                        28865 Lilienthal
+                      </span>
+                    </div>
+
+                    {/* Practice Hero Photo & Map Card */}
+                    <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-900 to-slate-900 p-6 text-white shadow-inner">
+                      <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none" />
+                      
+                      <div className="relative z-10 flex flex-col gap-3">
+                        <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold w-fit">
+                          <Compass className="w-3.5 h-3.5 text-emerald-300" />
+                          <span>Lilienthal bei Bremen</span>
+                        </div>
+                        
+                        <h3 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">
+                          ErnährungsTreff Lilienthal
+                        </h3>
+                        
+                        <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
+                          Ganzheitliche Ernährungsberatung & Ernährungstherapie in persönlicher Wohlfühlatmosphäre.
+                        </p>
+
+                        <div className="pt-2 flex flex-col gap-2 text-xs">
+                          <div className="flex items-center gap-2 text-white/90">
+                            <MapPin className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                            <span className="font-medium">Zur alten Wörpe 8, 28865 Lilienthal</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-white/90">
+                            <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                            <a href="tel:+4917630632723" className="font-bold hover:underline">
+                              +49 176 30632723
+                            </a>
+                          </div>
+                          <div className="flex items-center gap-2 text-white/90">
+                            <Clock className="w-4 h-4 text-amber-300 flex-shrink-0" />
+                            <span>Öffnungszeiten: Termine nach Vereinbarung (auch Spättermine ab 16:00 Uhr)</span>
+                          </div>
+                        </div>
+
+                        <div className="pt-2 flex items-center gap-2">
+                          <a
+                            href="https://www.google.com/maps/search/?api=1&query=Ern%C3%A4hrungsTreff+Lilienthal+Zur+alten+W%C3%B6rpe+8+28865+Lilienthal"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-slate-900 font-bold text-xs hover:bg-emerald-50 transition-colors"
+                          >
+                            <span>Google Maps Route</span>
+                            <ExternalLink className="w-3 h-3 text-slate-600" />
+                          </a>
+
+                          <a
+                            href="tel:+4917630632723"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-500 transition-colors"
+                          >
+                            <Phone className="w-3 h-3" />
+                            <span>Anrufen</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Status Bar */}
+                    <div className="pt-2 flex items-center justify-between text-xs font-semibold text-slate-600">
+                      <div className="flex items-center gap-1.5 text-slate-800 font-bold">
+                        <ShieldCheck className="w-4 h-4 text-brand-600" />
+                        <span>Qualifizierte Fachpraxis</span>
+                      </div>
+                      <span className="text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md font-bold">
+                        Neupatienten willkommen
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-[11px] font-extrabold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200">
-                    Sevilla
-                  </span>
-                </div>
-
-                {/* The Poster Image - Completely Clean and Uncovered */}
-                <div className="relative rounded-2xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center shadow-xs">
-                  <img
-                    src="/puntofinal-cartel.png"
-                    alt="PUNTOFINAL. Nutrición a tu medida - Rocío Jiménez López de Lemus"
-                    className="w-full h-auto object-contain rounded-xl select-none"
-                    loading="eager"
-                  />
-                </div>
-
-                {/* Clean Bottom Footer Bar */}
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-600">
-                  <span className="flex items-center gap-1 text-slate-700 font-bold">
-                    <Phone className="w-3.5 h-3.5 text-brand-600" />
-                    <span>955 641 335 • 682 602 256</span>
-                  </span>
-                  <span className="text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md font-bold">
-                    Cita previa disponible
-                  </span>
-                </div>
+                ) : (
+                  /* Interactive 3D Model View */
+                  <div>
+                    <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100 text-xs">
+                      <span className="font-bold text-slate-800">3D Stoffwechsel-Visualisierung</span>
+                      <span className="text-[11px] text-slate-500">Drehbar mit Maus / Touch</span>
+                    </div>
+                    <Hero3DCanvas />
+                  </div>
+                )}
 
               </div>
             </Card3DTilt>
 
-            {/* Clean Highlight Badges placed NEATLY BELOW the poster (Zero overlap, 100% human-readable!) */}
+            {/* Highlight Badges placed neatly below the card */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mt-5 w-full max-w-md sm:max-w-lg">
-              <div className="bg-white/90 backdrop-blur-sm p-3 rounded-2xl border border-slate-200/80 shadow-2xs text-center">
-                <span className="text-[10px] font-bold text-slate-500 block uppercase">Método</span>
-                <span className="text-xs font-extrabold text-brand-800">0% Efecto Rebote</span>
+              <div className="bg-white/90 backdrop-blur-sm p-3 rounded-2xl border border-slate-200/80 shadow-2xs text-center hover-lift">
+                <span className="text-[10px] font-bold text-slate-500 block uppercase">Konzept</span>
+                <span className="text-xs font-extrabold text-brand-800">0% Jo-Jo-Gefahr</span>
               </div>
-              <div className="bg-white/90 backdrop-blur-sm p-3 rounded-2xl border border-slate-200/80 shadow-2xs text-center">
-                <span className="text-[10px] font-bold text-slate-500 block uppercase">Modalidad</span>
-                <span className="text-xs font-extrabold text-slate-800">Grupal & Individual</span>
+              <div className="bg-white/90 backdrop-blur-sm p-3 rounded-2xl border border-slate-200/80 shadow-2xs text-center hover-lift">
+                <span className="text-[10px] font-bold text-slate-500 block uppercase">Beratung</span>
+                <span className="text-xs font-extrabold text-slate-800">Einzeln & Gruppe</span>
               </div>
-              <div className="col-span-2 sm:col-span-1 bg-white/90 backdrop-blur-sm p-3 rounded-2xl border border-slate-200/80 shadow-2xs text-center">
-                <span className="text-[10px] font-bold text-slate-500 block uppercase">Ubicación</span>
-                <span className="text-xs font-extrabold text-slate-800">Bermejales Center</span>
+              <div className="col-span-2 sm:col-span-1 bg-white/90 backdrop-blur-sm p-3 rounded-2xl border border-slate-200/80 shadow-2xs text-center hover-lift">
+                <span className="text-[10px] font-bold text-slate-500 block uppercase">Standort</span>
+                <span className="text-xs font-extrabold text-slate-800">Zur alten Wörpe 8</span>
               </div>
             </div>
 
@@ -181,17 +271,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onNavig
         {/* Trust Badges Strip */}
         <div className="mt-16 pt-8 border-t border-slate-200/70">
           <p className="text-center text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">
-            Dietista-Nutricionista Colegiada en Sevilla • Rocío Jiménez López de Lemus
+            Schwerpunkte & Leistungsbereiche im ErnährungsTreff Lilienthal
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-slate-700 font-bold text-xs sm:text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-slate-700 font-bold text-xs sm:text-sm">
             {[
-              'Dietista-Nutricionista Colegiada',
-              'Charlas Grupales para Adelgazar',
-              'Reeducación Nutricional Individual',
-              'Psiconutrición y Hambre Emocional',
-              'Salud Digestiva, Microbiota y SIBO',
+              'Wissenschaftlich fundierte Ernährungsberatung',
+              'Individuelle Einzelbetreuung & Workshops',
+              'Darmgesundheit & Mikrobiom-Aufbau',
+              'Nachhaltiger Fettabbau ohne Hungern',
+              'Hormonbalance, Schilddrüse & Stoffwechsel',
             ].map((badge, idx) => (
-              <div key={idx} className="flex items-center gap-2 bg-white/60 px-3 py-1.5 rounded-full border border-slate-200/60 shadow-2xs">
+              <div key={idx} className="flex items-center gap-2 bg-white/80 px-3.5 py-2 rounded-full border border-slate-200/70 shadow-2xs hover:border-brand-300 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-brand-600 flex-shrink-0" />
                 <span>{badge}</span>
               </div>
